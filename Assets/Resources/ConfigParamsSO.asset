@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fd4b04d266e4443b494c0df01ff2b0, type: 3}
+  m_Name: ConfigParamsSO
+  m_EditorClassIdentifier: 
+  DefaultLeftMode: 0
+  DefaultBrightness: 0
+  DefaultSoundVolume: 000000000000000000000000
+  DefaultDifficulty: 1
+  DefaultBrightnessVars:
+  - 0.25
+  - 2
+  - 10
+  ClearTime:
+  - 60
+  - 90
+  - 180
+  - 120
+  CakeMaxNum: 0f0000001e0000004600000037000000
+  StaminaDecreaseAmount: 00000000000000003200000032000000
+  StaminaIncreaseAmount: 00000000000000003200000019000000
+  OnMissedStaminaDecreaseAmount: 00000000000000000000000064000000

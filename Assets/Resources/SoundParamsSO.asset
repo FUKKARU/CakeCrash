@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc92c13bbc4de240979e2d8aaf283e1, type: 3}
+  m_Name: SoundParamsSO
+  m_EditorClassIdentifier: 
+  TitleBGM: {fileID: 8300000, guid: d1253e9450dd40d48a5acfee6dd789fa, type: 3}
+  GameBGM: {fileID: 8300000, guid: 749858dc42cd34b4ba30c873263557a0, type: 3}
+  OwlHootSE: {fileID: 8300000, guid: 4028d91393c308741a11a6488545a780, type: 3}
+  CakeFallSE: {fileID: 8300000, guid: 6bfa9cf9f2b237b439a1dde465782d37, type: 3}
+  HammerSmashSE: {fileID: 8300000, guid: b1e211189871bda4db5370637096baf9, type: 3}
+  HammerHitCakeSE: {fileID: 8300000, guid: 3d0f83ab75c2d1e4989ecf8b0be516e0, type: 3}
+  CakeCrushSE: {fileID: 8300000, guid: 3adefc49293012d4f961b81a3856ce8f, type: 3}
+  GuardManComeSE: {fileID: 8300000, guid: 6a8bde72d6190894eb95cafb1ae3328a, type: 3}
+  DoorHalfOpenSE: {fileID: 8300000, guid: 08a4e848351a6cc46bd552044f7a737b, type: 3}
+  DoorOpenSE: {fileID: 8300000, guid: 92fed099aeb9dce488e0f6782fc55a2e, type: 3}
+  DoorCloseSE: {fileID: 8300000, guid: 5b0415636b95ae94a955cc14b8c839a4, type: 3}
+  GuardManGoSE: {fileID: 8300000, guid: 6a8bde72d6190894eb95cafb1ae3328a, type: 3}
+  SquatSE: {fileID: 8300000, guid: 69804937a9c09b746988efcd27b4b2c4, type: 3}
+  HideSE: {fileID: 8300000, guid: 991fb54239ca67b44b5a16a7aea8427b, type: 3}
+  StandUpSE: {fileID: 8300000, guid: 69804937a9c09b746988efcd27b4b2c4, type: 3}
+  CreamHitFaceSE: {fileID: 8300000, guid: 3adefc49293012d4f961b81a3856ce8f, type: 3}
+  StaminaRunOutSE: {fileID: 8300000, guid: 56d3576e25721a44787cc78a7d3946a6, type: 3}
+  FoundByGuardManSE: {fileID: 8300000, guid: 1e60a73cb3111b54c85ba99623c56b16, type: 3}
+  StarSE: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  ScoreTextSE: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
+  ButtonClickSystem: {fileID: 8300000, guid: f43b89cc56e78ef42a1a897eeea9c18d, type: 3}

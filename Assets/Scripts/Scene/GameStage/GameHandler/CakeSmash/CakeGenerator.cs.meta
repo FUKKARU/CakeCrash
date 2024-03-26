@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7c067156be9b9b9418ad11f5023d7553
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cakeSetPrfb: {fileID: 5048540203506391198, guid: 6523b9bb0311c3944b7c44fe53ec2125, type: 3}
+  - redCakeBigPrfb: {fileID: 8996358580320682379, guid: 4f8e00cf0a588194e80d1e4b550150d5, type: 3}
+  - redCakeMediumPrfb: {fileID: 7659995614978370949, guid: 7a1144a678dc1474eb4e2c021e17a7a4, type: 3}
+  - redCakeSmallPrfb: {fileID: 6152430005282039435, guid: 03575b32ee4d8c44fb11ecf8c07db009, type: 3}
+  - blueCakeBigPrfb: {fileID: 6711076898313571711, guid: 4c0974bff4a48d041abeb6f140163a11, type: 3}
+  - blueCakeMediumPrfb: {fileID: 3212268749311360581, guid: 33a4e42dadd9fd549aceb953eb7491cf, type: 3}
+  - blueCakeSmallPrfb: {fileID: 3926558463444766793, guid: 1752d61fda3753e448bcb5defb51d91a, type: 3}
+  - greenCakeBigPrfb: {fileID: 1988765012469480296, guid: dc8046031353e88469bd443ab92200f9, type: 3}
+  - greenCakeMediumPrfb: {fileID: 7599604428742253496, guid: 5b8c114e458a42146aae239cd67e58d1, type: 3}
+  - greenCakeSmallPrfb: {fileID: 3444229550977385534, guid: b3f80dc1cc30d7c4fa6ca048e17f85bc, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

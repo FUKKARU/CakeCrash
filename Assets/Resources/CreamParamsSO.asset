@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c366544d4ad9dc64aab160f6a5384dea, type: 3}
+  m_Name: CreamParamsSO
+  m_EditorClassIdentifier: 
+  CreamGenerateZ: 115
+  CreamGenerateOffset: 5
+  MissCreamGeneratePos: {x: 0.5, y: 35, z: -27}
+  CreamFadePeriod: 0.5
+  MissCreamFadePeriod: 1.5
