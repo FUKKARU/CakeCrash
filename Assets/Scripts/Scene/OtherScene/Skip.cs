@@ -15,10 +15,13 @@ namespace Main
         const float deleteWaitTime = 5f; // ゲームが開始してから、スキップテキストを消すまでの秒数
         const float fadeOutPeriod = 1f; // フェードアウトする期間(秒)
 
-        void Start()
+        IEnumerator Start()
         {
             skipText.enabled = true;
             StartCoroutine(DeleteWait());
+            yield return new WaitForSeconds(85);
+            SceneChange();
+            yield return null;
         }
 
         // クリックされたらシーン切り替え
