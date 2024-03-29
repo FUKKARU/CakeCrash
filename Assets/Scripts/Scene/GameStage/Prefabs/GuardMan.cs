@@ -117,7 +117,7 @@ namespace Main
         {
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorHalfOpenSE);
             StartCoroutine(Handling(doorOpenList[0]));
-            GameManager.Instance.SquatAnnounceUI.enabled = true;
+            GameManager.Instance.SquatAnnounceUI.SetActive(true);
 
             yield return new WaitForSeconds(doorOpenWaitTime[0]);
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorOpenSE);
@@ -126,7 +126,7 @@ namespace Main
             yield return new WaitForSeconds(doorOpenWaitTime[1]);
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorCloseSE);
             yield return StartCoroutine(Handling(doorOpenList[2]));
-            GameManager.Instance.SquatAnnounceUI.enabled = false;
+            GameManager.Instance.SquatAnnounceUI.SetActive(false);
 
             // •à‚­
             GuardManAnim anim = Instantiate(guardManAnim, enter.position, Quaternion.Euler(0, 0, 0));
@@ -139,12 +139,12 @@ namespace Main
         {
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorHalfOpenSE);
             StartCoroutine(Handling(feintList[0]));
-            GameManager.Instance.SquatAnnounceUI.enabled = true;
+            GameManager.Instance.SquatAnnounceUI.SetActive(true);
 
             yield return new WaitForSeconds(feintWaitTime[0]);
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorCloseSE);
             yield return StartCoroutine(Handling(feintList[1]));
-            GameManager.Instance.SquatAnnounceUI.enabled = false;
+            GameManager.Instance.SquatAnnounceUI.SetActive(false);
 
             // •à‚­
             GuardManAnim anim = Instantiate(guardManAnim, enter.position, Quaternion.Euler(0, 0, 0));

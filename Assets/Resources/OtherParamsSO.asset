@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LightTheta: {x: -10, y: -190}
   FadeOutSpeed: 100
-  CakeOutOfRangeUIHideDuration: 2
+  CakeOutOfRangeUIHideDuration: 0.5
   GameOverCameraRotationX: -30
   QuitHoldPeriod: 3
   SceneChangeWaitTime: 0.2

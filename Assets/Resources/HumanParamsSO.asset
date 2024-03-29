@@ -17,7 +17,7 @@ MonoBehaviour:
   W_Speed: 10
   HammerGeneratePosition: {x: 0, y: 30.35, z: -25}
   HammerEulerY: {x: 90, y: 270}
-  HammerSpeed: 120
+  HammerSpeed: 60
   MaxStamina: 1000
   StaminaRecoverSpan: 1.5
   EventSpan: 15

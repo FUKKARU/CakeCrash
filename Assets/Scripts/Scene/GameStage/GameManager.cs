@@ -53,9 +53,10 @@ namespace Main
         [NonSerialized] public bool IsClear = false; // クリアになったかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
         [Header("大,中,小")] public GameObject[] HitTutorial;
-        [SerializeField] AudioSource audioSource;
+        [SerializeField] AudioSource audioSourceBGM;
+        [SerializeField] AudioSource audioSourceSE;
         public Image CakeOutOfRangeUI;
-        public Image SquatAnnounceUI;
+        public GameObject SquatAnnounceUI;
         float time; // Quitボタンが押されている時間
         bool isCakeOutOfRangeUIShowing = false; // ケーキが範囲外のUIを、表示中かどうか
 
@@ -65,10 +66,10 @@ namespace Main
             Score = CakeMaxNum;
 
             CakeOutOfRangeUI.enabled = false;
-            SquatAnnounceUI.enabled = false;
+            SquatAnnounceUI.SetActive(false);
 
-            audioSource.clip = SoundParamsSO.Entity.GameBGM;
-            audioSource.Play();
+            audioSourceBGM.clip = SoundParamsSO.Entity.GameBGM;
+            audioSourceBGM.Play();
         }
 
         void Update()
@@ -123,6 +124,7 @@ namespace Main
 
                 CakeOutOfRangeUI.enabled = true;
                 StartCoroutine(ShowCakeOutOfRangeUIBehaviour());
+                audioSourceSE.PlayOneShot(SoundParamsSO.Entity.CakeOutOfRangeSE);
             }
         }
         public IEnumerator ShowCakeOutOfRangeUIBehaviour()

@@ -19,6 +19,7 @@ MonoBehaviour:
   HammerSmashSE: {fileID: 8300000, guid: b1e211189871bda4db5370637096baf9, type: 3}
   HammerHitCakeSE: {fileID: 8300000, guid: 3d0f83ab75c2d1e4989ecf8b0be516e0, type: 3}
   CakeCrushSE: {fileID: 8300000, guid: 3adefc49293012d4f961b81a3856ce8f, type: 3}
+  CakeOutOfRangeSE: {fileID: 8300000, guid: fb70356a774bef54c889ee1dd211d70b, type: 3}
   GuardManComeSE: {fileID: 8300000, guid: 6a8bde72d6190894eb95cafb1ae3328a, type: 3}
   DoorHalfOpenSE: {fileID: 8300000, guid: 08a4e848351a6cc46bd552044f7a737b, type: 3}
   DoorOpenSE: {fileID: 8300000, guid: 92fed099aeb9dce488e0f6782fc55a2e, type: 3}

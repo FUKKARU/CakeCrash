@@ -44,6 +44,7 @@ namespace Main
         [Header("ハンマーを振る")] public AudioClip HammerSmashSE;
         [Header("ハンマーとケーキが衝突する")] public AudioClip HammerHitCakeSE;
         [Header("ケーキが壁に当たってつぶれ，クリームが壁につく")] public AudioClip CakeCrushSE;
+        [Header("範囲外のケーキを叩こうとした")] public AudioClip CakeOutOfRangeSE;
         [Header("警備員が歩いてくる")] public AudioClip GuardManComeSE;
         [Header("扉が少し開く")] public AudioClip DoorHalfOpenSE;
         [Header("扉が大きく開く")] public AudioClip DoorOpenSE;
