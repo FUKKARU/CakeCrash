@@ -13,11 +13,11 @@ namespace Main
         [SerializeField] AudioSource clickAS;
         bool isStartPlaced = false;
 
-        // Title -> Tutorial (チュートリアル画面に移行)
-        public void TitleToTutorial()
+        // Title -> GameStage
+        public void TitleToGameStage()
         {
             isStartPlaced = true;
-            StartCoroutine(FadeOutToTutorial());
+            StartCoroutine(FadeOutToGameStage());
         }
 
         // Title -> Config (設定画面に行く)
@@ -56,7 +56,7 @@ namespace Main
             yield break;
         }
 
-        IEnumerator FadeOutToTutorial()
+        IEnumerator FadeOutToGameStage()
         {
             clickAS.PlayOneShot(SoundParamsSO.Entity.ButtonClickSystem);
 
@@ -73,7 +73,7 @@ namespace Main
                 if (a > 1)
                 {
                     Destroy(titleBGM);
-                    SceneManager.LoadScene("Tutorial");
+                    SceneManager.LoadScene("GameStage");
 
                     yield break;
                 }
