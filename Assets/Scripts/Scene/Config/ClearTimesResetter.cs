@@ -12,6 +12,7 @@ namespace Main
             PlayerPrefs.DeleteKey("EasyClearTimes");
             PlayerPrefs.DeleteKey("NormalClearTimes");
             PlayerPrefs.DeleteKey("HardClearTimes");
+            PlayerPrefs.DeleteKey("SuperHardClearTimes");
         }
     }
 }

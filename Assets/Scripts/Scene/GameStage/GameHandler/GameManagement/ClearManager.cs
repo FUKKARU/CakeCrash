@@ -33,7 +33,7 @@ namespace Main
         const float scaleSpeed = 10; // 演出で，小さくなる速さ
         const float goBackButtonBlinkPeriod = 0.75f; // タイトルに戻るボタンが点滅する周期(秒)
         const int maxStarPattern = 4; // 星のパターンの最大個数
-        readonly int[] dClearTimes = { 0, 0, 0 }; // 初期設定：クリア回数 (E,N,H)
+        readonly int[] dClearTimes = { 0, 0, 0, 0 }; // 初期設定：クリア回数 (E,N,H,SH)
 
         void Update()
         {
@@ -152,11 +152,17 @@ namespace Main
                     times++;
                     PlayerPrefs.SetInt("NormalClearTimes", times);
                 }
-                else
+                else if (difficulty == 2)
                 {
                     int times = PlayerPrefs.GetInt("HardClearTimes", dClearTimes[2]);
                     times++;
                     PlayerPrefs.SetInt("HardClearTimes", times);
+                }
+                else
+                {
+                    int times = PlayerPrefs.GetInt("SuperHardClearTimes", dClearTimes[3]);
+                    times++;
+                    PlayerPrefs.SetInt("SuperHardClearTimes", times);
                 }
                 
                 scoreText.GetComponent<TextMeshProUGUI>().text = $"<size=54><color=#FF0000>[ノルマ達成] お見事！</color></size>";

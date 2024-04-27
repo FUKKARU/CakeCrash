@@ -652,8 +652,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=24>\u30CE\u30EB\u30DE\u9054\u6210\u56DE\u6570\uFF1A</size>9999 -
-    9999 - 9999"
+  m_text: "<size=24>\u30CE\u30EB\u30DE\u9054\u6210\u56DE\u6570\uFF1A</size>999 -
+    999 - 999 - 999"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac2e206c8b9c30f42838f4872f27c2e8, type: 2}
   m_sharedMaterial: {fileID: -280950021208164664, guid: ac2e206c8b9c30f42838f4872f27c2e8, type: 2}
@@ -680,8 +680,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
