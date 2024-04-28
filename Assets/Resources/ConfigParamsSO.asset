@@ -17,8 +17,8 @@ MonoBehaviour:
   DefaultSoundVolume: 000000000000000000000000
   DefaultDifficulty: 1
   DefaultBrightnessVars:
-  - 0.25
-  - 2
+  - 0.5
+  - 4
   - 10
   ClearTime:
   - 60

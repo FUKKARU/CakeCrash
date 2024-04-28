@@ -16,5 +16,6 @@ MonoBehaviour:
   FadeOutSpeed: 100
   CakeOutOfRangeUIHideDuration: 0.5
   GameOverCameraRotationX: -30
-  QuitHoldPeriod: 3
+  QuitHoldPeriod: 2
+  ClearTimesResetHoldPeriod: 5
   SceneChangeWaitTime: 0.2

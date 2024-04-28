@@ -40,7 +40,6 @@ namespace Main
         [NonSerialized] public float IsGreen = 0; // 緑に対応するボタンの入力
         [NonSerialized] public float IsBlue = 0; // 青に対応するボタンの入力
         [NonSerialized] public float IsSquat = 0; // しゃがみに対応するボタンの入力
-        [NonSerialized] public float IsQuit = 0; // 退出に対応するボタンの入力
         #endregion
         [NonSerialized] public int CurrentStamina;
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
@@ -57,8 +56,8 @@ namespace Main
         [SerializeField] AudioSource audioSourceSE;
         public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
-        float time; // Quitボタンが押されている時間
         bool isCakeOutOfRangeUIShowing = false; // ケーキが範囲外のUIを、表示中かどうか
+        float quitTime = 0; // タイトルに戻るボタンが押されている時間
 
         void Start()
         {
@@ -96,18 +95,17 @@ namespace Main
             }
 
             // タイトルに戻る判定
-            if (IsQuit >= 0.99f)
+            if (Input.GetKey(KeyCode.Alpha0))
             {
-                time += Time.deltaTime;
+                quitTime += Time.deltaTime;
+                if (quitTime >= OtherParamsSO.Entity.QuitHoldPeriod)
+                {
+                    SceneManager.LoadScene("Title");
+                }
             }
             else
             {
-                time = 0;
-            }
-
-            if (time >= OtherParamsSO.Entity.QuitHoldPeriod)
-            {
-                SceneManager.LoadScene("Title");
+                quitTime = 0;
             }
 
             // アクティブにし続けない限り、矢印は消える。

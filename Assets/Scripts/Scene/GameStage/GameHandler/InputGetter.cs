@@ -50,10 +50,6 @@ namespace Main
             {
                 GameManager.Instance.IsSquat = context.ReadValue<float>(); // “ü—Í’l‚ðŽæ“¾
             }
-            else if (context.action.name == "Quit")
-            {
-                GameManager.Instance.IsQuit = context.ReadValue<float>(); // “ü—Í’l‚ðŽæ“¾
-            }
             else
             {
                 return;
