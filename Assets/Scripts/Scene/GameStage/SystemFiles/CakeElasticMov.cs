@@ -23,9 +23,7 @@ public class CakeElasticMov : MonoBehaviour
         for (int i = 0; i < MeshClone.vertices.Length; i++)
         {
             jv[i] = new JellyVertex(i, transform.TransformPoint(MeshClone.vertices[i]));
-
         }
-
     }
 
 
@@ -62,8 +60,6 @@ public class CakeElasticMov : MonoBehaviour
             Position += velocity;
             if ((velocity + Force + Force / m).magnitude < 0.001f)
                 Position = target;
-
-
         }
     }
 }
