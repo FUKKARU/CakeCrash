@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +10,7 @@ namespace Main
 {
     public class SceneChanger : MonoBehaviour
     {
-        [Header("Configシーンでは設定の必要なし")] [SerializeField] Image fadeOutImage;
+        [Header("Configシーンでは設定の必要なし")][SerializeField] Image fadeOutImage;
         [Space(50)]
         [SerializeField] AudioSource clickAS;
         bool isStartPlaced = false;
@@ -59,6 +61,18 @@ namespace Main
         IEnumerator FadeOutToGameStage()
         {
             clickAS.PlayOneShot(SoundParamsSO.Entity.ButtonClickSystem);
+
+            // カウントダウン
+            GameObject.FindGameObjectWithTag("StartButton").SetActive(false);
+            TextMeshProUGUI countdown = GameObject.FindGameObjectWithTag("Countdown").GetComponent<TextMeshProUGUI>();
+            countdown.enabled = true;
+            for (int i = 3; i >= 0; i--)
+            {
+                // 表示
+                countdown.text = i > 0 ? i.ToString() : "GO!";
+
+                yield return new WaitForSeconds(1);
+            }
 
             GameObject titleBGM = GameObject.FindGameObjectsWithTag("TitleBGM")[0];
             AudioSource titleBGMAS = titleBGM.GetComponent<AudioSource>();

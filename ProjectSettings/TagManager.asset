@@ -11,6 +11,9 @@ TagManager:
   - Floor
   - TitleBGM
   - GuardMan
+  - Countdown
+  - StartButton
+  - Tips
   layers:
   - Default
   - TransparentFX
