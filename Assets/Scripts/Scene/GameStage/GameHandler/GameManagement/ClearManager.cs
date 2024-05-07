@@ -119,6 +119,8 @@ namespace Main
                 yield return null;
             }
 
+            onStar.transform.localScale = firstScale;
+
             StarAS.PlayOneShot(SoundParamsSO.Entity.StarSE);
             doneStarNum += 1;
             yield break;

@@ -43,28 +43,33 @@ namespace Main
 
             if (!GameManager.Instance.IsLeftMode)
             {
-                if (mostLeftCakeSet == null) { Debug.LogError("0"); }
-                float leftDistance = Mathf.Abs(mostLeftCakeSet.transform.position.x - (-CakeParamsSO.Entity.CakeLimitX));
-
-                // シーン内にケーキがcakeMaxSetNumセットないならば，左端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
-                if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && leftDistance >= CakeParamsSO.Entity.CakeOfst)
+                if (mostLeftCakeSet != null)
                 {
-                    if (!GameManager.Instance.IsAllSmashed)
+                    float leftDistance = Mathf.Abs(mostLeftCakeSet.transform.position.x - (-CakeParamsSO.Entity.CakeLimitX));
+
+                    // シーン内にケーキがcakeMaxSetNumセットないならば，左端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
+                    if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && leftDistance >= CakeParamsSO.Entity.CakeOfst)
                     {
-                        mostLeftCakeSet = MakeACakeSet(new Vector3(-CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                        if (!GameManager.Instance.IsAllSmashed)
+                        {
+                            mostLeftCakeSet = MakeACakeSet(new Vector3(-CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                        }
                     }
                 }
             }
             else
             {
-                float rightDistance = Mathf.Abs(CakeParamsSO.Entity.CakeLimitX - mostRightCakeSet.transform.position.x);
-
-                // シーン内にケーキがcakeMaxSetNumセットないならば，右端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
-                if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && rightDistance >= CakeParamsSO.Entity.CakeOfst)
+                if (mostRightCakeSet != null)
                 {
-                    if (!GameManager.Instance.IsAllSmashed)
+                    float rightDistance = Mathf.Abs(CakeParamsSO.Entity.CakeLimitX - mostRightCakeSet.transform.position.x);
+
+                    // シーン内にケーキがcakeMaxSetNumセットないならば，右端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
+                    if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && rightDistance >= CakeParamsSO.Entity.CakeOfst)
                     {
-                        mostRightCakeSet = MakeACakeSet(new Vector3(CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                        if (!GameManager.Instance.IsAllSmashed)
+                        {
+                            mostRightCakeSet = MakeACakeSet(new Vector3(CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                        }
                     }
                 }
             }
