@@ -15,16 +15,7 @@ namespace Main
             {
                 GameManager.Instance.IsHammerGeneratable = false;
                 GameManager.Instance.IsHammerShakable = true;
-                Quaternion rot;
-                if (!GameManager.Instance.IsLeftMode)
-                {
-                    rot = Quaternion.Euler(0, HumanParamsSO.Entity.HammerEulerY.x, 0);
-                }
-                else
-                {
-                    rot = Quaternion.Euler(0, 360 - HumanParamsSO.Entity.HammerEulerY.x, 0);
-                }
-                Instantiate(hammerPrfb, HumanParamsSO.Entity.HammerGeneratePosition, rot);
+                Instantiate(hammerPrfb, HumanParamsSO.Entity.HammerGeneratePosition, Quaternion.identity);
             }
         }
     }

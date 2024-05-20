@@ -37,9 +37,10 @@ namespace Main
         [Header("テスト用：ガードマンが来なくなる")] public bool GuardManStop = false;
         [Header("視点の最大鉛直振れ幅")] public float DoubleA_YRange = 21f;
         [Header("視点のうごくスピード")] public float W_Speed = 10f;
+        [Header("ハンマーを振るクールタイム")] public float HammerCooltime = 0.1f;
         [Header("ハンマーを生成する座標(=ハンマー本体の中心)")] public Vector3 HammerGeneratePosition = new Vector3(0.5f, 30.35f, -25f);
-        [Header("ハンマーを振るオイラー角y (開始，終了)")] public Vector2 HammerEulerY = new Vector2(90f, 270f);
-        [Header("ハンマーを振るスピード")] public float HammerSpeed = 60f;
+        [Header("ハンマーを振るオイラー角z (開始，終了)")] public Vector2 HammerEulerZ = new Vector2(0f, 90f);
+        [Header("ハンマーを振る時間")] public float HammerDur = 0.1f;
         [Header("スタミナの最大量")] public int MaxStamina = 1000;
         [Header("スタミナの回復頻度")] public float StaminaRecoverSpan = 1.5f;
         [Header("ガードマンが来る間隔[秒]")] public float EventSpan = 15f;

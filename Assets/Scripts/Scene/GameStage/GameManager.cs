@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -42,22 +43,26 @@ namespace Main
         [NonSerialized] public float IsSquat = 0; // しゃがみに対応するボタンの入力
         #endregion
         [NonSerialized] public int CurrentStamina;
+        [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
         [NonSerialized] public bool IsHammerGeneratable = false; // ハンマーを生成可能な状態であるかどうか
         [NonSerialized] public bool IsTired = false; // 疲れているかどうか
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
-        [NonSerialized] public bool IsDoingPenalty = false; // ペナルティを実行中かどうか
+        [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
+        [SerializeField] public bool IsReallyDoingPenalty = true; // 1回実行するためだけのフラグ
         [NonSerialized] public bool IsAllSmashed = false; // ケーキを全て壊したかどうか
         [NonSerialized] public bool IsClear = false; // クリアになったかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
-        [Header("大,中,小")] public GameObject[] HitTutorial;
         [SerializeField] AudioSource audioSourceBGM;
         [SerializeField] AudioSource audioSourceSE;
+        [SerializeField] IsMissingHandler isMissingHandler;
         public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
-        bool isCakeOutOfRangeUIShowing = false; // ケーキが範囲外のUIを、表示中かどうか
+        public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
+        public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
         float quitTime = 0; // タイトルに戻るボタンが押されている時間
+        float hammerCooltime = 0f;
 
         void Start()
         {
@@ -74,6 +79,56 @@ namespace Main
         void Update()
         {
             TimePassed += Time.deltaTime; // 経過時間をカウント
+
+            if (!IsHammerCoolTime)
+            {
+                // 入力を受け取って、ハンマーを振る合図を送る。
+                if (!IsTired && !IsHiding && !IsLooking && !IsDoingPenalty && !IsClear && !IsGameOver)
+                {
+                    if (IsRed >= 0.99f)
+                    {
+                        IsHammerCoolTime = true;
+                        hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
+
+                        IsRed = 0;
+                        PushedColor = PUSHED_COLOR.RED;
+                        IsHammerGeneratable = true;
+                    }
+                    else if (IsGreen >= 0.99f)
+                    {
+                        IsHammerCoolTime = true;
+                        hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
+
+                        IsGreen = 0;
+                        PushedColor = PUSHED_COLOR.GREEN;
+                        IsHammerGeneratable = true;
+                    }
+                    else if (IsBlue >= 0.99f)
+                    {
+                        IsHammerCoolTime = true;
+                        hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
+
+                        IsBlue = 0;
+                        PushedColor = PUSHED_COLOR.BLUE;
+                        IsHammerGeneratable = true;
+                    }
+                }
+            }
+            else
+            {
+                hammerCooltime -= Time.deltaTime;
+                if (hammerCooltime <= 0)
+                {
+                    hammerCooltime = 0;
+                    IsHammerCoolTime = false;
+                }
+            }
+
+            if (IsDoingPenalty && IsReallyDoingPenalty)
+            {
+                IsReallyDoingPenalty = false;
+                StartCoroutine(isMissingHandler.MissCreamGenerate());
+            }
 
             // ケーキを全て壊しきったらクリア
             if (Score <= 0)
@@ -107,30 +162,6 @@ namespace Main
             {
                 quitTime = 0;
             }
-
-            // アクティブにし続けない限り、矢印は消える。
-            HitTutorial[0].SetActive(false);
-            HitTutorial[1].SetActive(false);
-            HitTutorial[2].SetActive(false);
-        }
-
-        public void ShowCakeOutOfRangeUI()
-        {
-            if (!isCakeOutOfRangeUIShowing)
-            {
-                isCakeOutOfRangeUIShowing = true;
-
-                CakeOutOfRangeUI.enabled = true;
-                StartCoroutine(ShowCakeOutOfRangeUIBehaviour());
-                audioSourceSE.PlayOneShot(SoundParamsSO.Entity.CakeOutOfRangeSE);
-            }
-        }
-        public IEnumerator ShowCakeOutOfRangeUIBehaviour()
-        {
-            yield return new WaitForSeconds(OtherParamsSO.Entity.CakeOutOfRangeUIHideDuration);
-            CakeOutOfRangeUI.enabled = false;
-
-            isCakeOutOfRangeUIShowing = false;
         }
     }
 }

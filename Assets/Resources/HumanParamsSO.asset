@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73829b7248aff154a98fd40d1610e8db, type: 3}
   m_Name: HumanParamsSO
   m_EditorClassIdentifier: 
-  GuardManStop: 0
+  GuardManStop: 1
   DoubleA_YRange: 21
   W_Speed: 10
-  HammerGeneratePosition: {x: 0, y: 30.35, z: -25}
-  HammerEulerY: {x: 90, y: 270}
-  HammerSpeed: 60
+  HammerCooltime: 0.2
+  HammerGeneratePosition: {x: 0, y: 36.25, z: -20}
+  HammerEulerZ: {x: 0, y: 90}
+  HammerDur: 0.2
   MaxStamina: 1000
   StaminaRecoverSpan: 1.5
   EventSpan: 15

@@ -7,35 +7,32 @@ namespace Main
     public class HammerSmash : MonoBehaviour
     {
         [SerializeField] AudioSource audioSource;
+        float startEulerZ;
+        float endEulerZ;
+        float eulerZ;
+        float t = 0;
 
         void Start()
         {
+            startEulerZ = HumanParamsSO.Entity.HammerEulerZ.x;
+            endEulerZ = HumanParamsSO.Entity.HammerEulerZ.y;
+            eulerZ = startEulerZ;
+            transform.rotation = Quaternion.Euler(0, 90, eulerZ);
+
             audioSource.PlayOneShot(SoundParamsSO.Entity.HammerSmashSE);
         }
 
         void Update()
         {
-            if (!GameManager.Instance.IsLeftMode)
+            t += Time.deltaTime;
+            eulerZ = (endEulerZ - startEulerZ) * t / HumanParamsSO.Entity.HammerDur;
+            if (t >= HumanParamsSO.Entity.HammerDur)
             {
-                // ‰ñ“]
-                transform.Rotate(Vector3.down * 10 * (HumanParamsSO.Entity.HammerSpeed * Time.deltaTime));
-
-                // U‚èI‚í‚Á‚½‚çÁ‚·B
-                if (HumanParamsSO.Entity.HammerEulerY.x < transform.eulerAngles.y && transform.eulerAngles.y < HumanParamsSO.Entity.HammerEulerY.y)
-                {
-                    Destroy(gameObject);
-                }
+                Destroy(gameObject);
             }
             else
             {
-                // ‰ñ“]
-                transform.Rotate(Vector3.up * 10 * (HumanParamsSO.Entity.HammerSpeed * Time.deltaTime));
-
-                // U‚èI‚í‚Á‚½‚çÁ‚·B
-                if (360 - HumanParamsSO.Entity.HammerEulerY.y < transform.eulerAngles.y && transform.eulerAngles.y < 360 - HumanParamsSO.Entity.HammerEulerY.x)
-                {
-                    Destroy(gameObject);
-                }
+                transform.rotation = Quaternion.Euler(0, 90, eulerZ);
             }
         }
     }
