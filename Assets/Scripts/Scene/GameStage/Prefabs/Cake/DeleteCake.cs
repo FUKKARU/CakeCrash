@@ -18,9 +18,11 @@ namespace Main
         enum SIZE { NULL, BIG, MEDIUM, SMALL }
         [SerializeField] SIZE cakeSize = SIZE.NULL;
 
+        IsMissingHandler isMissingHandler;
+        Transform creamParent;
         [SerializeField] GameObject creamPrfb;
         Rigidbody rb;
-        bool isTouchedHammerHead = false; // ハンマーの頭に触れたかどうか
+        public bool IsTouchedHammerHead { get; set; } = false; // ハンマーの頭に触れたかどうか
         bool isSmashed = false; // 吹っ飛ばされたかどうか(1回だけ実行するためのただのフラグ)
         bool isHitWall = false;
         bool isSoundPlayable = false; // 落下音を再生できるかどうか
@@ -36,6 +38,8 @@ namespace Main
 
         void Start()
         {
+            isMissingHandler = GameObject.FindGameObjectWithTag("IsMissingHandler").GetComponent<IsMissingHandler>();
+            creamParent = GameObject.FindGameObjectWithTag("CreamParent").transform;
             rb = GetComponent<Rigidbody>();
             StartCoroutine(TimeCount());
         }
@@ -43,7 +47,7 @@ namespace Main
         void Update()
         {
             // ケーキがハンマーに触れたらケーキを吹っ飛ばす。
-            if (isTouchedHammerHead && !isSmashed)
+            if (IsTouchedHammerHead && !isSmashed)
             {
                 isSmashed = true; // 吹っ飛ばされたので，このif文はもう実行されない。
 
@@ -122,7 +126,7 @@ namespace Main
             Vector3 cameraPos = mainCamera.transform.position;
             Vector3 direction = generatePos_ - cameraPos;
             Vector3 generatePos = cameraPos + (1 - CreamParamsSO.Entity.CreamGenerateOffset / direction.magnitude) * direction;
-            Instantiate(creamPrfb, generatePos, Quaternion.identity);
+            Instantiate(creamPrfb, generatePos, Quaternion.identity, creamParent);
             Destroy(gameObject);
         }
 
@@ -132,7 +136,7 @@ namespace Main
             isSoundPlayable = true;
         }
 
-        // 底のケーキになったか，壁に衝突したか，ハンマーの頭に触れたかを判定
+        // 机または壁に触れた
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Desk"))
@@ -143,53 +147,53 @@ namespace Main
                 }
             }
 
-            if (collision.gameObject.CompareTag("HammerHead"))
-            {
-                isTouchedHammerHead = true;
-                Destroy(collision.gameObject);
-                audioSourceSmashed.PlayOneShot(SoundParamsSO.Entity.HammerHitCakeSE);
-
-                if (cakeColor == COLOR.RED)
-                {
-                    if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.RED)
-                    {
-                        GameManager.Instance.Score--;
-                    }
-                    else
-                    {
-                        GameManager.Instance.IsDoingPenalty = true;
-                        Destroy(gameObject);
-                    }
-                }
-                else if (cakeColor == COLOR.GREEN)
-                {
-                    if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.GREEN)
-                    {
-                        GameManager.Instance.Score--;
-                    }
-                    else
-                    {
-                        GameManager.Instance.IsDoingPenalty = true;
-                        Destroy(gameObject);
-                    }
-                }
-                else if (cakeColor == COLOR.BLUE)
-                {
-                    if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.BLUE)
-                    {
-                        GameManager.Instance.Score--;
-                    }
-                    else
-                    {
-                        GameManager.Instance.IsDoingPenalty = true;
-                        Destroy(gameObject);
-                    }
-                }
-            }
-
             if (collision.gameObject.CompareTag("Wall"))
             {
                 isHitWall = true;
+            }
+        }
+
+        // ハンマーの頭に触れた時に呼ばれる
+        public void HitHammer()
+        {
+            IsTouchedHammerHead = true;
+            audioSourceSmashed.PlayOneShot(SoundParamsSO.Entity.HammerHitCakeSE);
+
+            if (cakeColor == COLOR.RED)
+            {
+                if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.RED)
+                {
+                    GameManager.Instance.Score--;
+                }
+                else
+                {
+                    isMissingHandler.MissCreamGenerate();
+                    Destroy(gameObject);
+                }
+            }
+            else if (cakeColor == COLOR.GREEN)
+            {
+                if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.GREEN)
+                {
+                    GameManager.Instance.Score--;
+                }
+                else
+                {
+                    isMissingHandler.MissCreamGenerate();
+                    Destroy(gameObject);
+                }
+            }
+            else if (cakeColor == COLOR.BLUE)
+            {
+                if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.BLUE)
+                {
+                    GameManager.Instance.Score--;
+                }
+                else
+                {
+                    isMissingHandler.MissCreamGenerate();
+                    Destroy(gameObject);
+                }
             }
         }
     }

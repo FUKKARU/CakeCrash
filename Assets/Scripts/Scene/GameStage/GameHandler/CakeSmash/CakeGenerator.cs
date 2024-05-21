@@ -6,6 +6,7 @@ namespace Main
 {
     public class CakeGenerator : MonoBehaviour
     {
+        [SerializeField] Transform cakeParent;
         [SerializeField] GameObject cakeSetPrfb;
         [SerializeField] GameObject redCakeBigPrfb;
         [SerializeField] GameObject redCakeMediumPrfb;
@@ -28,10 +29,12 @@ namespace Main
                 if (!GameManager.Instance.IsLeftMode)
                 {
                     mostLeftCakeSet = MakeACakeSet(new Vector3(generateX, 0, 0));
+                    mostLeftCakeSet.transform.parent = cakeParent;
                 }
                 else
                 {
                     mostRightCakeSet = MakeACakeSet(new Vector3(-generateX, 0, 0));
+                    mostRightCakeSet.transform.parent = cakeParent;
                 }
             }
         }
@@ -53,6 +56,7 @@ namespace Main
                         if (!GameManager.Instance.IsAllSmashed)
                         {
                             mostLeftCakeSet = MakeACakeSet(new Vector3(-CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                            mostLeftCakeSet.transform.parent = cakeParent;
                         }
                     }
                 }
@@ -69,6 +73,7 @@ namespace Main
                         if (!GameManager.Instance.IsAllSmashed)
                         {
                             mostRightCakeSet = MakeACakeSet(new Vector3(CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                            mostRightCakeSet.transform.parent = cakeParent;
                         }
                     }
                 }

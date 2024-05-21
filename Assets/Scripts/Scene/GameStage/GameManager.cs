@@ -46,11 +46,10 @@ namespace Main
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
         [NonSerialized] public bool IsHammerGeneratable = false; // ハンマーを生成可能な状態であるかどうか
+        [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
         [NonSerialized] public bool IsTired = false; // 疲れているかどうか
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
-        [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
-        [SerializeField] public bool IsReallyDoingPenalty = true; // 1回実行するためだけのフラグ
         [NonSerialized] public bool IsAllSmashed = false; // ケーキを全て壊したかどうか
         [NonSerialized] public bool IsClear = false; // クリアになったかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
@@ -61,6 +60,7 @@ namespace Main
         public GameObject SquatAnnounceUI;
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
         public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
+        public List<GameObject> Hammers;
         float quitTime = 0; // タイトルに戻るボタンが押されている時間
         float hammerCooltime = 0f;
 
@@ -124,12 +124,6 @@ namespace Main
                 }
             }
 
-            if (IsDoingPenalty && IsReallyDoingPenalty)
-            {
-                IsReallyDoingPenalty = false;
-                StartCoroutine(isMissingHandler.MissCreamGenerate());
-            }
-
             // ケーキを全て壊しきったらクリア
             if (Score <= 0)
             {
@@ -161,6 +155,14 @@ namespace Main
             else
             {
                 quitTime = 0;
+            }
+        }
+
+        public void DeleteAllHammers()
+        {
+            foreach (GameObject hammer in Hammers)
+            {
+                Destroy(hammer);
             }
         }
     }

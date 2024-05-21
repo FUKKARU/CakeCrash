@@ -15,6 +15,9 @@ TagManager:
   - StartButton
   - Tips
   - Canvas
+  - HitZone
+  - IsMissingHandler
+  - CreamParent
   layers:
   - Default
   - TransparentFX

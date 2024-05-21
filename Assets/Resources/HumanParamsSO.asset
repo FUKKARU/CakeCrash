@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: HumanParamsSO
   m_EditorClassIdentifier: 
   GuardManStop: 1
-  DoubleA_YRange: 21
-  W_Speed: 10
+  DoubleA_YRange: 28
+  W_Speed: 15
   HammerCooltime: 0.2
   HammerGeneratePosition: {x: 0, y: 36.25, z: -20}
   HammerEulerZ: {x: 0, y: 90}

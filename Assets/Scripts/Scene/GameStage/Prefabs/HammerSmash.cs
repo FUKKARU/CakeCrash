@@ -26,7 +26,8 @@ namespace Main
         {
             t += Time.deltaTime;
             eulerZ = (endEulerZ - startEulerZ) * t / HumanParamsSO.Entity.HammerDur;
-            if (t >= HumanParamsSO.Entity.HammerDur)
+
+            if (eulerZ > endEulerZ)
             {
                 Destroy(gameObject);
             }

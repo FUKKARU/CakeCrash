@@ -6,21 +6,33 @@ namespace Main
 {
     public class IsMissingHandler : MonoBehaviour
     {
+        [SerializeField] Transform missCreamParent;
         [SerializeField] GameObject missCream;
         [SerializeField] AudioSource audioSource;
 
+        bool isDoingPenalty = false; // 1回だけ実行するためのフラグ
+
         // ペナルティ
-        public IEnumerator MissCreamGenerate()
+        public void MissCreamGenerate()
         {
-            GameObject missCreamInstance = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity);
+            if (!isDoingPenalty)
+            {
+                isDoingPenalty = true;
+                GameManager.Instance.IsDoingPenalty = true;
+                StartCoroutine(MissCreamBhv());
+            }
+        }
+        IEnumerator MissCreamBhv()
+        {
+            GameObject cream = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity, missCreamParent);
             audioSource.PlayOneShot(SoundParamsSO.Entity.CreamHitFaceSE);
 
             yield return new WaitForSeconds(CreamParamsSO.Entity.MissCreamFadePeriod);
 
-            Destroy(missCreamInstance);
+            Destroy(cream);
 
             GameManager.Instance.IsDoingPenalty = false;
-            GameManager.Instance.IsReallyDoingPenalty = true;
+            isDoingPenalty = false;
         }
     }
 }

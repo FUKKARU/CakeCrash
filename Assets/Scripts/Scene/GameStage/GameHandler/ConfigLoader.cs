@@ -6,7 +6,7 @@ namespace Main
 {
     public class ConfigLoader : MonoBehaviour
     {
-        [SerializeField] GameObject slider;
+        //[SerializeField] GameObject slider;
 
         void Awake()
         {
@@ -40,13 +40,13 @@ namespace Main
 
             GameManager.Instance.ClearTime = ConfigParamsSO.Entity.ClearTime[difficulty];
             GameManager.Instance.CakeMaxNum = ConfigParamsSO.Entity.CakeMaxNum[difficulty];
-            GameManager.Instance.StaminaDecreaseAmount = ConfigParamsSO.Entity.StaminaDecreaseAmount[difficulty];
-            GameManager.Instance.StaminaIncreaseAmount = ConfigParamsSO.Entity.StaminaIncreaseAmount[difficulty];
-            GameManager.Instance.OnMissedStaminaDecreaseAmount = ConfigParamsSO.Entity.OnMissedStaminaDecreaseAmount[difficulty];
-            if (difficulty == 0 || difficulty == 1)
-            {
-                slider.SetActive(false);
-            }
+            //GameManager.Instance.StaminaDecreaseAmount = ConfigParamsSO.Entity.StaminaDecreaseAmount[difficulty];
+            //GameManager.Instance.StaminaIncreaseAmount = ConfigParamsSO.Entity.StaminaIncreaseAmount[difficulty];
+            //GameManager.Instance.OnMissedStaminaDecreaseAmount = ConfigParamsSO.Entity.OnMissedStaminaDecreaseAmount[difficulty];
+            //if (difficulty == 0 || difficulty == 1)
+            //{
+            //    slider.SetActive(false);
+            //}
         }
     }
 }

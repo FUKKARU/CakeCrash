@@ -6,6 +6,7 @@ namespace Main
 {
     public class HammerGenerator : MonoBehaviour
     {
+        [SerializeField] Transform hammerParent;
         [SerializeField] private GameObject hammerPrfb;
 
         void Update()
@@ -15,7 +16,8 @@ namespace Main
             {
                 GameManager.Instance.IsHammerGeneratable = false;
                 GameManager.Instance.IsHammerShakable = true;
-                Instantiate(hammerPrfb, HumanParamsSO.Entity.HammerGeneratePosition, Quaternion.identity);
+                GameObject hammer = Instantiate(hammerPrfb, HumanParamsSO.Entity.HammerGeneratePosition, Quaternion.identity, hammerParent);
+                GameManager.Instance.Hammers.Add(hammer);
             }
         }
     }
