@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ed6061359e6b3478a2e3e59e94bbc7, type: 3}
   m_Name: CakeParamsSO
   m_EditorClassIdentifier: 
+  CakeMaxNum: 100
   CakeStartGenerateXList:
   - 40
   - 0
@@ -22,6 +23,7 @@ MonoBehaviour:
   - 34
   - 39
   - 44
+  AudioPlayableTime: 0.5
   LaneLimitZList:
   - 23
   - 20.6
@@ -30,9 +32,9 @@ MonoBehaviour:
   - 15.5
   - 13.1
   - 10.7
-  IsNearCenterXCoef: 1.15
   MaxCakeSet: 3
-  CakeSpeed: 15
+  CakeSpeed: 7
+  DeleteTimeLimit: 15
   SmashVector3:
   - {x: -0.75, y: 0.25, z: 1}
   - {x: -0.75, y: 0.25, z: 1}
@@ -41,3 +43,4 @@ MonoBehaviour:
   - 300
   - 300
   - 300
+  SplashFadingSpeed: 5
