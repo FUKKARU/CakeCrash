@@ -10,12 +10,14 @@ namespace Main
         [SerializeField] GameObject missCream;
         [SerializeField] AudioSource audioSource;
 
+        GameObject creamInstance = null;
+
         bool isDoingPenalty = false; // 1回だけ実行するためのフラグ
 
         // ペナルティ
         public void MissCreamGenerate()
         {
-            if (!isDoingPenalty)
+            if (!isDoingPenalty && creamInstance == null)
             {
                 isDoingPenalty = true;
                 GameManager.Instance.IsDoingPenalty = true;
@@ -24,12 +26,12 @@ namespace Main
         }
         IEnumerator MissCreamBhv()
         {
-            GameObject cream = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity, missCreamParent);
+            creamInstance = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity, missCreamParent);
             audioSource.PlayOneShot(SoundParamsSO.Entity.CreamHitFaceSE);
 
             yield return new WaitForSeconds(CreamParamsSO.Entity.MissCreamFadePeriod);
 
-            Destroy(cream);
+            Destroy(creamInstance);
 
             GameManager.Instance.IsDoingPenalty = false;
             isDoingPenalty = false;
