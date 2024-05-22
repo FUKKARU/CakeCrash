@@ -5,7 +5,7 @@ public class SlimeRenderer : MonoBehaviour
 {
     [SerializeField] private Material material; // スライム用のマテリアル
 
-    private const int MaxSphereCount = 1024; // 球の最大個数（シェーダー側と合わせる）
+    private const int MaxSphereCount = 256; // 球の最大個数（シェーダー側と合わせる）
     private readonly Vector4[] _spheres = new Vector4[MaxSphereCount];
     private SphereCollider[] _colliders;
     private Vector4[] _colors = new Vector4[MaxSphereCount];

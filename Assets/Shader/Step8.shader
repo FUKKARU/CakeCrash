@@ -70,7 +70,7 @@ Shader "Slime/Step8"
                 #endif
             }
 
-            #define MAX_SPHERE_COUNT 1024 // 最大の球の個数
+            #define MAX_SPHERE_COUNT 256 // 最大の球の個数
             float4 _Spheres[MAX_SPHERE_COUNT]; // 球の座標・半径を格納した配列
             fixed3 _Colors[MAX_SPHERE_COUNT]; // 球の色を格納した配列
             int _SphereCount; // 処理する球の個数
