@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -58,6 +59,10 @@ namespace Main
         [SerializeField] IsMissingHandler isMissingHandler;
         public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
+        public TextMeshProUGUI ComboUI;
+        uint comboCounter;
+        bool onSquatCombo = false;
+        [SerializeField] AnimationCurve comboUISize;
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
         public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
         public List<GameObject> Hammers;
@@ -156,6 +161,10 @@ namespace Main
             {
                 quitTime = 0;
             }
+
+            if (IsGameOver) ComboUI.text = "";
+
+            SquatComboStarter();
         }
 
         public void DeleteAllHammers()
@@ -165,5 +174,69 @@ namespace Main
                 Destroy(hammer);
             }
         }
+
+        #region Combo
+        IEnumerator ComboAnim(bool repeat)
+        {
+            //コンボ継続の時のテキストアニメーション
+            float t = 0;
+            float textSize = 1;
+            float animTime  = 0.3f;
+            print(comboUISize.length);
+            bool changeText = false;
+            while (t < animTime)
+            {
+                textSize = comboUISize.Evaluate(t);
+                ComboUI.rectTransform.localScale = new Vector2(textSize, textSize);
+                if (t > animTime / 2.0f && !changeText)
+                {
+                    ComboUI.text = "Combo " + comboCounter;
+                    changeText = true;
+                }
+                t += Time.deltaTime;
+                yield return null;
+            }
+            if (repeat && onSquatCombo) 
+            {
+                yield return new WaitForSeconds(0.3f);
+                ComboContinuation(true);
+            }
+        }
+
+        public void ComboContinuation(bool repeat = false)
+        {
+            //コンボ継続の時 DeleteCake.csもしくはSquatMove.cs呼ぶ
+            if (comboCounter  == 0) ComboUI.text = "Combo " + comboCounter;
+            comboCounter++;
+            StartCoroutine(ComboAnim(repeat));
+        }
+
+        public void ComboEnd()
+        {
+            //コンボ終了の時 DeleteCake.csが呼ぶ
+            comboCounter = 0;
+            ComboUI.text = "";
+        }
+
+
+        void SquatComboStarter()
+        {
+            if (IsLooking && IsHiding)
+            {
+                if (!onSquatCombo)
+                {
+                    onSquatCombo = true;
+                    ComboContinuation(true);
+                }
+
+            }
+            else
+            {
+                onSquatCombo = false;
+            }
+        }
+        #endregion
     }
+
+
 }

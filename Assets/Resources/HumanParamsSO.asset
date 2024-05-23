@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73829b7248aff154a98fd40d1610e8db, type: 3}
   m_Name: HumanParamsSO
   m_EditorClassIdentifier: 
-  GuardManStop: 1
+  GuardManStop: 0
   DoubleA_YRange: 28
   W_Speed: 15
   HammerCooltime: 0.2
