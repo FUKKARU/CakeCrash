@@ -183,7 +183,6 @@ namespace Main
             float t = 0;
             float textSize = 1;
             float animTime  = 0.3f;
-            print(comboUISize.length);
             bool changeText = false;
             while (t < animTime)
             {
