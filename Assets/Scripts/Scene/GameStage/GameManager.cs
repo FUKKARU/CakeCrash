@@ -54,6 +54,7 @@ namespace Main
         [NonSerialized] public bool IsAllSmashed = false; // ケーキを全て壊したかどうか
         [NonSerialized] public bool IsClear = false; // クリアになったかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
+        [NonSerialized] public GameObject missCream = null;
         [SerializeField] AudioSource audioSourceBGM;
         [SerializeField] AudioSource audioSourceSE;
         [SerializeField] IsMissingHandler isMissingHandler;

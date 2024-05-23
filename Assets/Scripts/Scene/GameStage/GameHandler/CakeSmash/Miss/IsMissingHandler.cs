@@ -24,12 +24,12 @@ namespace Main
         }
         IEnumerator MissCreamBhv()
         {
-            GameObject cream = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity, missCreamParent);
+            if (GameManager.Instance.missCream == null) GameManager.Instance.missCream = Instantiate(missCream, CreamParamsSO.Entity.MissCreamGeneratePos, Quaternion.identity, missCreamParent);
             audioSource.PlayOneShot(SoundParamsSO.Entity.CreamHitFaceSE);
 
             yield return new WaitForSeconds(CreamParamsSO.Entity.MissCreamFadePeriod);
 
-            Destroy(cream);
+            Destroy(GameManager.Instance.missCream);
 
             GameManager.Instance.IsDoingPenalty = false;
             isDoingPenalty = false;

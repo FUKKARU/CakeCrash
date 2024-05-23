@@ -126,7 +126,7 @@ namespace Main
             Vector3 cameraPos = mainCamera.transform.position;
             Vector3 direction = generatePos_ - cameraPos;
             Vector3 generatePos = cameraPos + (1 - CreamParamsSO.Entity.CreamGenerateOffset / direction.magnitude) * direction;
-            Instantiate(creamPrfb, generatePos, Quaternion.identity, creamParent);
+            if (GameManager.Instance.missCream == null) Instantiate(creamPrfb, generatePos, Quaternion.identity, creamParent);
             Destroy(gameObject);
         }
 
