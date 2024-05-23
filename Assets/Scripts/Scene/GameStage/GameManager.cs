@@ -61,12 +61,23 @@ namespace Main
         public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
         public TextMeshProUGUI ComboUI;
-        uint comboCounter;
+        int comboCounter = 0;
+        int ComboCounter
+        {
+            get
+            {
+                return comboCounter;
+            }
+            set
+            {
+                comboCounter = Mathf.Clamp(value, 0, int.MaxValue);
+            }
+        }
         bool onSquatCombo = false;
         [SerializeField] AnimationCurve comboUISize;
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
-        public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
-        public List<GameObject> Hammers;
+        [NonSerialized] public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
+        [NonSerialized] public List<GameObject> Hammers = new();
         float quitTime = 0; // タイトルに戻るボタンが押されている時間
         float hammerCooltime = 0f;
 
@@ -182,7 +193,7 @@ namespace Main
             //コンボ継続の時のテキストアニメーション
             float t = 0;
             float textSize = 1;
-            float animTime  = 0.3f;
+            float animTime = 0.3f;
             bool changeText = false;
             while (t < animTime)
             {
@@ -190,13 +201,13 @@ namespace Main
                 ComboUI.rectTransform.localScale = new Vector2(textSize, textSize);
                 if (t > animTime / 2.0f && !changeText)
                 {
-                    ComboUI.text = "Combo " + comboCounter;
+                    ComboUI.text = "Combo " + ComboCounter;
                     changeText = true;
                 }
                 t += Time.deltaTime;
                 yield return null;
             }
-            if (repeat && onSquatCombo) 
+            if (repeat && onSquatCombo)
             {
                 yield return new WaitForSeconds(0.3f);
                 ComboContinuation(true);
@@ -206,16 +217,16 @@ namespace Main
         public void ComboContinuation(bool repeat = false)
         {
             //コンボ継続の時 DeleteCake.csもしくはSquatMove.cs呼ぶ
-            if (comboCounter  == 0) ComboUI.text = "Combo " + comboCounter;
-            comboCounter++;
+            if (ComboCounter == 0) ComboUI.text = "Combo " + ComboCounter;
+            ComboCounter++;
             StartCoroutine(ComboAnim(repeat));
         }
 
         public void ComboEnd()
         {
             //コンボ終了の時 DeleteCake.csが呼ぶ
-            comboCounter = 0;
-            ComboUI.text = "";
+            ComboCounter -= HumanParamsSO.Entity.OnMissComboDel;
+            ComboUI.text = comboCounter == 0 ? "" : "Combo " + ComboCounter;
         }
 
 

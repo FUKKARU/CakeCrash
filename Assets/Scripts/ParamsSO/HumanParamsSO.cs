@@ -45,5 +45,6 @@ namespace Main
         [Header("スタミナの回復頻度")] public float StaminaRecoverSpan = 1.5f;
         [Header("ガードマンが来る間隔[秒]")] public float EventSpan = 15f;
         [Header("ガードマンがフェイントを使う確率(の分母)")] public int FeintProbability = 10;
+        [Header("ミスった際のコンボの減少量")] public int OnMissComboDel;
     }
 }
