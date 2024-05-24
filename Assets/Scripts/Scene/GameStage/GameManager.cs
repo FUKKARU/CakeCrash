@@ -257,8 +257,8 @@ namespace Main
         bool stun;
         [SerializeField] ParticleSystem StunEFF;
         [SerializeField] AnimationCurve StunCurve;
-        float r = 1;
-        float p = 0.3f;
+        float r = 0.5f;
+        float p = 0.1f;
         IEnumerator Stun(float endT = 3.0f)
         {
             StunEFF.Play();
@@ -269,7 +269,6 @@ namespace Main
             float t = 0;
             while (t < endT)
             {
-                print(t);
                 t += Time.deltaTime;
                 float strength = StunCurve.Evaluate(t / endT);
                 camera.transform.position = startPos + UnityEngine.Random.insideUnitSphere * strength * p;
