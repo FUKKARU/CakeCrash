@@ -227,9 +227,10 @@ namespace Main
             StartCoroutine(ComboAnim(repeat));
         }
 
-        public void ComboEnd()
+        public void ComboEnd(bool keibiin = false)
         {
             //ƒRƒ“ƒ{I—¹‚Ì DeleteCake.cs‚ªŒÄ‚Ô
+            if (keibiin) ComboCounter = 0;
             ComboCounter -= HumanParamsSO.Entity.OnMissComboDel;
             ComboUI.text = comboCounter == 0 ? "" : "Combo " + ComboCounter;
         }
@@ -261,6 +262,7 @@ namespace Main
         float p = 0.1f;
         IEnumerator Stun(float endT = 3.0f)
         {
+            ComboEnd(true);
             StunEFF.Play();
             Camera camera = Camera.main;
             Vector3 startPos = camera.transform.position;
