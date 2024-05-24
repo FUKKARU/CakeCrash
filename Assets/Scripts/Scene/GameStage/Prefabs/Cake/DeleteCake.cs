@@ -163,7 +163,10 @@ namespace Main
             {
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.RED)
                 {
-                    GameManager.Instance.Score--;
+                    GameManager.Instance.CakeCrashNum++;
+                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    GameManager.Instance.leftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -177,7 +180,10 @@ namespace Main
             {
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.GREEN)
                 {
-                    GameManager.Instance.Score--;
+                    GameManager.Instance.CakeCrashNum++;
+                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    GameManager.Instance.leftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -191,7 +197,10 @@ namespace Main
             {
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.BLUE)
                 {
-                    GameManager.Instance.Score--;
+                    GameManager.Instance.CakeCrashNum++;
+                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    GameManager.Instance.leftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else

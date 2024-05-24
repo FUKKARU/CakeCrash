@@ -54,9 +54,9 @@ namespace Main
                 nowVolume = gameBGMAS.volume;
 
                 // 星の数を計算
-                if (GameManager.Instance.Score <= GameManager.Instance.CakeMaxNum / (float)maxStarPattern) { starNum = 3; }
-                else if (GameManager.Instance.Score <= GameManager.Instance.CakeMaxNum * 2 / (float)maxStarPattern) { starNum = 2; }
-                else if (GameManager.Instance.Score <= GameManager.Instance.CakeMaxNum * 3 / (float)maxStarPattern) { starNum = 1; }
+                if (GameManager.Instance.leftNum <= GameManager.Instance.CakeMaxNum / (float)maxStarPattern) { starNum = 3; }
+                else if (GameManager.Instance.leftNum <= GameManager.Instance.CakeMaxNum * 2 / (float)maxStarPattern) { starNum = 2; }
+                else if (GameManager.Instance.leftNum <= GameManager.Instance.CakeMaxNum * 3 / (float)maxStarPattern) { starNum = 1; }
                 else { starNum = 0; }
 
                 StartCoroutine(StarShow(starNum));
@@ -131,10 +131,10 @@ namespace Main
         {
             Vector3 firstScale = scoreText.transform.localScale;
             scoreText.transform.localScale = firstScale * firstScaleAmount;
-            if (GameManager.Instance.Score > 0)
+            if (GameManager.Instance.leftNum > 0)
             {
                 // 達成度を小数第1位まで（四捨五入して）表示
-                float p = (GameManager.Instance.CakeMaxNum - GameManager.Instance.Score) / (float)GameManager.Instance.CakeMaxNum * 100;
+                float p = (GameManager.Instance.CakeMaxNum - GameManager.Instance.leftNum) / (float)GameManager.Instance.CakeMaxNum * 100;
                 scoreText.GetComponent<TextMeshProUGUI>().text = $"達成度：{Math.Round(p, 1, MidpointRounding.AwayFromZero)}<size=54>%</size>";
             }
             else

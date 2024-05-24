@@ -45,5 +45,7 @@ namespace Main
         [Header("ケーキの流れるスピード")] public float CakeSpeed = 7f;
         [Header("ケーキを吹っ飛ばす方向\r\n(大，中，小)")] public Vector3[] SmashVector3 = { new Vector3(-0.75f, 0.25f, 1f), new Vector3(-0.75f, 0.25f, 1f), new Vector3(-0.75f, 0.25f, 1f) };
         [Header("ケーキを吹っ飛ばす力\r\n(大，中，小)")] public float[] SmashPower = { 300f, 300f, 300f };
+        [Header("ケーキを何個壊すごとに、スコアに換算する演出を入れるか。")] public int ToScoreDur;
+        [Header("スコアの差分テキストを消すまでの秒数")] public float DelTextFadeDur;
     }
 }

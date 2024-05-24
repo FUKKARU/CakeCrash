@@ -11,7 +11,7 @@ namespace Main
 
         void Update()
         {
-            scoreTMPro.text = $"<color=#C8C800>{GameManager.Instance.Score}</color><SIZE=20> / {GameManager.Instance.CakeMaxNum}</SIZE>";
+            scoreTMPro.text = $"<color=#C8C800>{GameManager.Instance.leftNum}</color><SIZE=20> / {GameManager.Instance.CakeMaxNum}</SIZE>";
         }
     }
 }

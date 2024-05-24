@@ -41,3 +41,5 @@ MonoBehaviour:
   - 300
   - 300
   - 300
+  ToScoreDur: 10
+  DelTextFadeDur: 2
