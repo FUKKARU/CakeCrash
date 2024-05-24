@@ -33,27 +33,31 @@ namespace Main
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            // 設定したもの以外は処理しない
-            if (context.action.name == "Red")
+            if (GameManager.Instance.inputCont)
             {
-                GameManager.Instance.IsRed = context.ReadValue<float>(); // 入力値を取得
+                // 設定したもの以外は処理しない
+                if (context.action.name == "Red")
+                {
+                    GameManager.Instance.IsRed = context.ReadValue<float>(); // 入力値を取得
+                }
+                else if (context.action.name == "Green")
+                {
+                    GameManager.Instance.IsGreen = context.ReadValue<float>(); // 入力値を取得
+                }
+                else if (context.action.name == "Blue")
+                {
+                    GameManager.Instance.IsBlue = context.ReadValue<float>(); // 入力値を取得
+                }
+                else if (context.action.name == "Squat")
+                {
+                    GameManager.Instance.IsSquat = context.ReadValue<float>(); // 入力値を取得
+                }
+                else
+                {
+                    return;
+                }
             }
-            else if (context.action.name == "Green")
-            {
-                GameManager.Instance.IsGreen = context.ReadValue<float>(); // 入力値を取得
-            }
-            else if (context.action.name == "Blue")
-            {
-                GameManager.Instance.IsBlue = context.ReadValue<float>(); // 入力値を取得
-            }
-            else if (context.action.name == "Squat")
-            {
-                GameManager.Instance.IsSquat = context.ReadValue<float>(); // 入力値を取得
-            }
-            else
-            {
-                return;
-            }
+
         }
     }
 }

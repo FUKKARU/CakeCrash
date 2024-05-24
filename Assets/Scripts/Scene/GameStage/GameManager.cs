@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -61,6 +62,7 @@ namespace Main
         public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
         public TextMeshProUGUI ComboUI;
+        [NonSerialized] public bool inputCont = true;
         int comboCounter = 0;
         int ComboCounter
         {
@@ -83,6 +85,7 @@ namespace Main
 
         void Start()
         {
+            StunEFF.Pause();
             // スコアを初期化
             Score = CakeMaxNum;
 
@@ -155,9 +158,11 @@ namespace Main
             }
 
             // ゲームオーバーを判定
-            if (IsLooking && !IsHiding && !IsClear)
+            if (IsLooking && !IsHiding && !IsClear && !stun)
             {
-                IsGameOver = true;
+                //IsGameOver = true;
+                StartCoroutine(Stun());
+                stun = true;
             }
 
             // タイトルに戻る判定
@@ -246,6 +251,38 @@ namespace Main
                 onSquatCombo = false;
             }
         }
+        #endregion
+
+        #region Stunned
+        bool stun;
+        [SerializeField] ParticleSystem StunEFF;
+        [SerializeField] AnimationCurve StunCurve;
+        float r = 1;
+        float p = 0.3f;
+        IEnumerator Stun(float endT = 3.0f)
+        {
+            StunEFF.Play();
+            Camera camera = Camera.main;
+            Vector3 startPos = camera.transform.position;
+            Quaternion startRot = camera.transform.rotation;
+            inputCont = false;
+            float t = 0;
+            while (t < endT)
+            {
+                print(t);
+                t += Time.deltaTime;
+                float strength = StunCurve.Evaluate(t / endT);
+                camera.transform.position = startPos + UnityEngine.Random.insideUnitSphere * strength * p;
+                camera.transform.rotation = startRot * Quaternion.Euler(UnityEngine.Random.Range(-r, r), UnityEngine.Random.Range(-r, r), UnityEngine.Random.Range(-r, r));
+                yield return null;
+            }
+            StunEFF.Pause();
+            camera.transform.position = startPos;
+            camera.transform.rotation = startRot;
+            inputCont = true;
+            stun = false;
+        }
+
         #endregion
     }
 
