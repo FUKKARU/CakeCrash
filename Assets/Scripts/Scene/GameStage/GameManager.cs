@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Security.Cryptography;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,7 +35,7 @@ namespace Main
         [NonSerialized] public int OnMissedStaminaDecreaseAmount;
         #endregion
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
-        [NonSerialized] public int leftNum = 0; // 残りのケーキの数
+        [NonSerialized] public int LeftNum = 0; // 残りのケーキの数
         #region 入力(float)
         [NonSerialized] public float IsRed = 0; // 赤に対応するボタンの入力
         [NonSerialized] public float IsGreen = 0; // 緑に対応するボタンの入力
@@ -57,25 +54,34 @@ namespace Main
         [NonSerialized] public bool IsClear = false; // クリアになったかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
         [NonSerialized] public GameObject missCream = null;
+        [NonSerialized] public bool inputCont = true;
         [NonSerialized] public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
         [NonSerialized] public List<GameObject> Hammers = new();
 
         [SerializeField] AudioSource audioSourceBGM;
         [SerializeField] AudioSource audioSourceSE;
         [SerializeField] IsMissingHandler isMissingHandler;
-        [SerializeField] TextMeshProUGUI ScoreText;
-        [SerializeField] TextMeshProUGUI DeltaScoreText;
         [SerializeField] AnimationCurve comboUISize;
-        public Image CakeOutOfRangeUI;
-        public GameObject SquatAnnounceUI;
-        public TextMeshProUGUI ComboUI;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
+        [SerializeField] TextMeshProUGUI scoreText;
+        [SerializeField] TextMeshProUGUI deltaScoreText;
 
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
 
+        public Image CakeOutOfRangeUI;
+        public GameObject SquatAnnounceUI;
+        public TextMeshProUGUI ComboUI;
+
+        int comboCounter = 0; public int ComboCounter
+        {
+            get
+            {
+                return comboCounter;
+            }
+            set
+            {
+                comboCounter = Mathf.Clamp(value, 0, int.MaxValue);
+            }
+        }
         int cakeCrashNum = 0; public int CakeCrashNum
         {
             get
@@ -99,25 +105,6 @@ namespace Main
             }
         }
         int preScore = 0;
-        int comboCounter = 0; public int ComboCounter
-=======
-=======
->>>>>>> 75a8f979cb40dc9a204d6038160128b85b152f7d
->>>>>>> Stashed changes
-        [NonSerialized] public bool inputCont = true;
-        int comboCounter = 0;
-        int ComboCounter
->>>>>>> 75a8f979cb40dc9a204d6038160128b85b152f7d
-        {
-            get
-            {
-                return comboCounter;
-            }
-            set
-            {
-                comboCounter = Mathf.Clamp(value, 0, int.MaxValue);
-            }
-        }
         bool onSquatCombo = false;
         float quitTime = 0; // タイトルに戻るボタンが押されている時間
         float hammerCooltime = 0f;
@@ -126,14 +113,15 @@ namespace Main
         {
             StunEFF.Pause();
             // スコアを初期化
-            leftNum = CakeMaxNum;
+            LeftNum = CakeMaxNum;
 
             CakeOutOfRangeUI.enabled = false;
             SquatAnnounceUI.SetActive(false);
 
+            deltaScoreText.enabled = false;
             preScore = Score;
-            DeltaScoreText.enabled = false;
-            DeltaScoreText.text = Score.ToString();
+            scoreText.text = Score.ToString("D8");
+            deltaScoreText.text = "+ " + (Score - preScore).ToString();
 
             audioSourceBGM.clip = SoundParamsSO.Entity.GameBGM;
             audioSourceBGM.Play();
@@ -143,7 +131,7 @@ namespace Main
         {
             TimePassed += Time.deltaTime; // 経過時間をカウント
 
-            #region 入力を受け取って、ハンマーを振る合図を送る。
+            #region 入力を受け取って、ハンマーを振る合図を送る
             if (!IsHammerCoolTime)
             {
                 if (!IsTired && !IsHiding && !IsLooking && !IsDoingPenalty && !IsClear && !IsGameOver)
@@ -189,7 +177,7 @@ namespace Main
             #endregion
 
             #region ケーキを全て壊しきったらクリア
-            if (leftNum <= 0)
+            if (LeftNum <= 0)
             {
                 IsAllSmashed = true;
                 IsClear = true;
@@ -203,23 +191,8 @@ namespace Main
             }
             #endregion
 
-<<<<<<< Updated upstream
-            // ゲームオーバーを判定
-            if (IsLooking && !IsHiding && !IsClear && !stun)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
             #region ゲームオーバーを判定
-            if (IsLooking && !IsHiding && !IsClear)
-=======
-            // ゲームオーバーを判定
             if (IsLooking && !IsHiding && !IsClear && !stun)
->>>>>>> 75a8f979cb40dc9a204d6038160128b85b152f7d
-=======
-            // ゲームオーバーを判定
-            if (IsLooking && !IsHiding && !IsClear && !stun)
->>>>>>> 75a8f979cb40dc9a204d6038160128b85b152f7d
->>>>>>> Stashed changes
             {
                 //IsGameOver = true;
                 StartCoroutine(Stun());
@@ -263,18 +236,18 @@ namespace Main
                 CakeCrashNum -= CakeParamsSO.Entity.ToScoreDur;
             }
 
-            ScoreText.text = Score.ToString("D8");
-            DeltaScoreText.text = "+ " + (Score - preScore).ToString();
+            scoreText.text = Score.ToString("D8");
+            deltaScoreText.text = "+ " + (Score - preScore).ToString();
             preScore = Score;
 
             if (delTextFade != null) StopCoroutine(delTextFade);
-            DeltaScoreText.enabled = true;
+            deltaScoreText.enabled = true;
             delTextFade = StartCoroutine(DelTextFade());
         }
         IEnumerator DelTextFade()
         {
             yield return new WaitForSeconds(CakeParamsSO.Entity.DelTextFadeDur);
-            DeltaScoreText.enabled = false;
+            deltaScoreText.enabled = false;
         }
 
         #region Combo
