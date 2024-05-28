@@ -41,12 +41,5 @@ namespace Main
         [Header("難易度 (0:簡単 1:普通 2:難しい 3:とても難しい)")] public int DefaultDifficulty = 1;
         [Space(50)]
         [Header("部屋の明るさの計算式 (I = d(=var0) * var1^(n/var2))")] public float[] DefaultBrightnessVars = { 0.5f, 2f, 10f };
-        [Space(50)]
-        [Header("難易度設定(E,N,H,S)")]
-        [Header("クリアまでの秒数")] public float[] ClearTime = { 60f, 90f, 180f, 120f };
-        [Header("吹っ飛ばすケーキの上限個数")] public int[] CakeMaxNum = { 15, 30, 70, 55 };
-        [Header("スタミナの1回の減少量")] public int[] StaminaDecreaseAmount = { 0, 0, 50, 50 };
-        [Header("スタミナの1回の回復量")] public int[] StaminaIncreaseAmount = { 0, 0, 50, 25 };
-        [Header("間違った時の，スタミナの減少量")] public int[] OnMissedStaminaDecreaseAmount = { 0, 0, 0, 100 };
     }
 }

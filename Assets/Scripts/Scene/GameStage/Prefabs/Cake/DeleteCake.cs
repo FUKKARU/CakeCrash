@@ -166,7 +166,6 @@ namespace Main
                     GameManager.Instance.CakeCrashNum++;
                     GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
                     if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
-                    GameManager.Instance.LeftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -183,7 +182,6 @@ namespace Main
                     GameManager.Instance.CakeCrashNum++;
                     GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
                     if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
-                    GameManager.Instance.LeftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -200,7 +198,6 @@ namespace Main
                     GameManager.Instance.CakeCrashNum++;
                     GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
                     if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
-                    GameManager.Instance.LeftNum--;
                     GameManager.Instance.ComboContinuation();
                 }
                 else

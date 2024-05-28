@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Main
 {
@@ -26,33 +25,20 @@ namespace Main
         }
         #endregion
 
-        #region 設定(初期値はNormal)
         [NonSerialized] public bool IsLeftMode;
-        [NonSerialized] public float ClearTime;
-        [NonSerialized] public int CakeMaxNum;
-        [NonSerialized] public int StaminaDecreaseAmount;
-        [NonSerialized] public int StaminaIncreaseAmount;
-        [NonSerialized] public int OnMissedStaminaDecreaseAmount;
-        #endregion
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
-        [NonSerialized] public int LeftNum = 0; // 残りのケーキの数
-        #region 入力(float)
         [NonSerialized] public float IsRed = 0; // 赤に対応するボタンの入力
         [NonSerialized] public float IsGreen = 0; // 緑に対応するボタンの入力
         [NonSerialized] public float IsBlue = 0; // 青に対応するボタンの入力
         [NonSerialized] public float IsSquat = 0; // しゃがみに対応するボタンの入力
-        #endregion
         [NonSerialized] public int CurrentStamina;
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
         [NonSerialized] public bool IsHammerGeneratable = false; // ハンマーを生成可能な状態であるかどうか
         [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
-        [NonSerialized] public bool IsTired = false; // 疲れているかどうか
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
-        [NonSerialized] public bool IsAllSmashed = false; // ケーキを全て壊したかどうか
-        [NonSerialized] public bool IsClear = false; // クリアになったかどうか
-        [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか
+        [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか（どこかでtrueにしてね）
         [NonSerialized] public GameObject missCream = null;
         [NonSerialized] public bool inputCont = true;
         [NonSerialized] public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
@@ -67,7 +53,6 @@ namespace Main
 
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
 
-        public Image CakeOutOfRangeUI;
         public GameObject SquatAnnounceUI;
         public TextMeshProUGUI ComboUI;
 
@@ -112,10 +97,7 @@ namespace Main
         void Start()
         {
             StunEFF.Pause();
-            // スコアを初期化
-            LeftNum = CakeMaxNum;
 
-            CakeOutOfRangeUI.enabled = false;
             SquatAnnounceUI.SetActive(false);
 
             deltaScoreText.enabled = false;
@@ -134,7 +116,7 @@ namespace Main
             #region 入力を受け取って、ハンマーを振る合図を送る
             if (!IsHammerCoolTime)
             {
-                if (!IsTired && !IsHiding && !IsLooking && !IsDoingPenalty && !IsClear && !IsGameOver)
+                if (!IsHiding && !IsLooking && !IsDoingPenalty && !IsGameOver)
                 {
                     if (IsRed >= 0.99f)
                     {
@@ -176,25 +158,9 @@ namespace Main
             }
             #endregion
 
-            #region ケーキを全て壊しきったらクリア
-            if (LeftNum <= 0)
-            {
-                IsAllSmashed = true;
-                IsClear = true;
-            }
-            #endregion
-
-            #region 朝が来たらクリア
-            if (TimePassed >= ClearTime && !IsGameOver)
-            {
-                IsClear = true;
-            }
-            #endregion
-
             #region ゲームオーバーを判定
-            if (IsLooking && !IsHiding && !IsClear && !stun)
+            if (IsLooking && !IsHiding && !stun)
             {
-                //IsGameOver = true;
                 StartCoroutine(Stun());
                 stun = true;
             }

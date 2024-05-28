@@ -37,16 +37,6 @@ namespace Main
         {
             int dValue = ConfigParamsSO.Entity.DefaultDifficulty;
             int difficulty = PlayerPrefs.GetInt("Difficulty", dValue);
-
-            GameManager.Instance.ClearTime = ConfigParamsSO.Entity.ClearTime[difficulty];
-            GameManager.Instance.CakeMaxNum = ConfigParamsSO.Entity.CakeMaxNum[difficulty];
-            //GameManager.Instance.StaminaDecreaseAmount = ConfigParamsSO.Entity.StaminaDecreaseAmount[difficulty];
-            //GameManager.Instance.StaminaIncreaseAmount = ConfigParamsSO.Entity.StaminaIncreaseAmount[difficulty];
-            //GameManager.Instance.OnMissedStaminaDecreaseAmount = ConfigParamsSO.Entity.OnMissedStaminaDecreaseAmount[difficulty];
-            //if (difficulty == 0 || difficulty == 1)
-            //{
-            //    slider.SetActive(false);
-            //}
         }
     }
 }
