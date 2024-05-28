@@ -94,6 +94,25 @@ namespace Main
         float quitTime = 0; // タイトルに戻るボタンが押されている時間
         float hammerCooltime = 0f;
 
+        //ゲームオーバ用
+        int happiness_familyCount;
+        public void HappinessIncrement(int amount)
+        {
+            happiness_familyCount += amount;
+            happinessFamilyText.text = happiness_familyCount.ToString();
+        }
+        [SerializeField] TextMeshProUGUI happinessFamilyText;
+        [SerializeField] TextMeshProUGUI resultScoreText;
+        public bool isGameOver { get; private set; }
+        public bool GuardStop; 
+        IEnumerator ResultShow()
+        {
+            GuardStop = true;
+            inputCont = false;
+
+            yield return new WaitForSeconds(1);
+            resultScoreText.text = "Score : " + Score.ToString();
+        }
         void Start()
         {
             StunEFF.Pause();
@@ -184,6 +203,14 @@ namespace Main
             if (IsGameOver) ComboUI.text = "";
 
             SquatComboStarter();
+
+
+            if( happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
+            {
+                isGameOver = true;
+                HumanParamsSO.Entity.GuardManStop = true; 
+                StartCoroutine(ResultShow());
+            }
         }
 
         public void DeleteAllHammers()
@@ -205,7 +232,7 @@ namespace Main
             scoreText.text = Score.ToString("D8");
             deltaScoreText.text = "+ " + (Score - preScore).ToString();
             preScore = Score;
-
+            CakeParamsSO.Entity.CakeSpeed += CakeParamsSO.Entity.SpeedIncrementValue;
             if (delTextFade != null) StopCoroutine(delTextFade);
             deltaScoreText.enabled = true;
             delTextFade = StartCoroutine(DelTextFade());

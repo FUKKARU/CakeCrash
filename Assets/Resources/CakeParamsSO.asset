@@ -32,7 +32,7 @@ MonoBehaviour:
   - 10.7
   IsNearCenterXCoef: 1.15
   MaxCakeSet: 3
-  CakeSpeed: 15
+  CakeSpeed: 15.112379
   SmashVector3:
   - {x: -0.75, y: 0.25, z: 1}
   - {x: -0.75, y: 0.25, z: 1}
@@ -43,3 +43,5 @@ MonoBehaviour:
   - 300
   ToScoreDur: 10
   DelTextFadeDur: 2
+  GameOverCakeNum: 10
+  SpeedIncrementValue: 2
