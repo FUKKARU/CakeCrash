@@ -27,13 +27,14 @@ namespace Main
 
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
         [NonSerialized] public int CurrentStamina;
+        [NonSerialized] public bool IsPause = true; // ゲームが一時停止中かどうか(一時停止中に入力されないようにしている)
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
         [NonSerialized] public bool IsHammerGeneratable = false; // ハンマーを生成可能な状態であるかどうか
         [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
-        [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか（どこかでtrueにしてね）
+        [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか(どこかでtrueにしてね)
         [NonSerialized] public GameObject missCream = null;
         [NonSerialized] public bool inputCont = true;
         [NonSerialized] public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
@@ -90,7 +91,7 @@ namespace Main
 
         //ゲームオーバ用
         int happiness_familyCount;
-        
+
         void Start()
         {
             StunEFF.Pause();
@@ -103,7 +104,6 @@ namespace Main
             deltaScoreText.text = "+ " + (Score - preScore).ToString();
 
             audioSourceBGM.clip = SoundParamsSO.Entity.GameBGM;
-            audioSourceBGM.Play();
         }
 
         void Update()
@@ -115,7 +115,7 @@ namespace Main
             {
                 if (!IsHiding && !IsLooking && !IsDoingPenalty && !IsGameOver)
                 {
-                    if (IA.InputGetter.Instance.IsRed)
+                    if (IA.InputGetter.Instance.IsRed && !IsPause)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
@@ -123,7 +123,7 @@ namespace Main
                         PushedColor = PUSHED_COLOR.RED;
                         IsHammerGeneratable = true;
                     }
-                    else if (IA.InputGetter.Instance.IsGreen)
+                    else if (IA.InputGetter.Instance.IsGreen && !IsPause)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
@@ -131,7 +131,7 @@ namespace Main
                         PushedColor = PUSHED_COLOR.GREEN;
                         IsHammerGeneratable = true;
                     }
-                    else if (IA.InputGetter.Instance.IsBlue)
+                    else if (IA.InputGetter.Instance.IsBlue && !IsPause)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
@@ -160,19 +160,28 @@ namespace Main
             }
             #endregion
 
-            if (IA.InputGetter.Instance.Debug_IsToTitle) SceneManager.LoadScene("Title");
+            if (IA.InputGetter.Instance.Debug_IsToTitle)
+            {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Title");
+            }
 
             if (IsGameOver) ComboUI.text = "";
 
             SquatComboStarter();
 
 
-            if( happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
+            if (happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
             {
                 isGameOver = true;
-                HumanParamsSO.Entity.GuardManStop = true; 
+                HumanParamsSO.Entity.GuardManStop = true;
                 StartCoroutine(ResultShow());
             }
+        }
+
+        public void PlayBGM()
+        {
+            audioSourceBGM.Play();
         }
 
         public void DeleteAllHammers()

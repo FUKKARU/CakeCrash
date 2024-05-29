@@ -30,8 +30,8 @@ namespace Main
         void Update()
         {
             time += Time.deltaTime;
-            // 疲れていない，かつゲームオーバー状態でもクリア状態でもないときのみ，入力を受け付ける。
-            if (!isSquatHeld && isDownMode && IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver)
+            // 疲れていない，かつゲームオーバー状態でもクリア状態でもない、かつポーズ中でない時のみ，入力を受け付ける。
+            if (!isSquatHeld && isDownMode && IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver && !GameManager.Instance.IsPause)
             {
                 GameManager.Instance.IsHiding = true;
                 timeCheck = time;
@@ -44,8 +44,8 @@ namespace Main
             if (isSquatHeld && isDownMode)
             {
                 float t = time - timeCheck; // 下降開始時からのtをカウント
-                // 疲れていない，かつゲームオーバー状態でもクリア状態でもないときのみ，入力を受け付ける。
-                if (!IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver)
+                // 疲れていない，かつゲームオーバー状態でもクリア状態でもない、かつポーズ中でない時のみ，入力を受け付ける。
+                if (!IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver && !GameManager.Instance.IsPause)
                 {
                     releasedY = y;
                     isSquatHeld = false;
