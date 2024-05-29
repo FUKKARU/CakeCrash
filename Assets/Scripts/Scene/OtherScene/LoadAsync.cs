@@ -15,7 +15,6 @@ namespace Main
         [SerializeField] Slider _slider;
         [SerializeField] TextMeshProUGUI _text;
         [SerializeField] TextMeshProUGUI _startAbleText;
-        [SerializeField] TitleInputGetter inputScript;
 
         bool _loading = false;
 
@@ -44,7 +43,7 @@ namespace Main
                 {
                     _text.text = "Load complete!";
                     if (!_startAbleText.enabled) _startAbleText.enabled = true;
-                    if (inputScript.IsRed >= 0.99f || inputScript.IsGreen >= 0.99f || inputScript.IsBlue >= 0.99f)
+                    if (IA.InputGetter.Instance.IsRed || IA.InputGetter.Instance.IsGreen || IA.InputGetter.Instance.IsBlue)
                     {
                         async.allowSceneActivation = true;
                     }

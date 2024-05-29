@@ -31,7 +31,7 @@ namespace Main
         {
             time += Time.deltaTime;
             // 疲れていない，かつゲームオーバー状態でもクリア状態でもないときのみ，入力を受け付ける。
-            if (!isSquatHeld && isDownMode && GameManager.Instance.IsSquat >= 0.99f && !GameManager.Instance.IsGameOver)
+            if (!isSquatHeld && isDownMode && IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver)
             {
                 GameManager.Instance.IsHiding = true;
                 timeCheck = time;
@@ -45,7 +45,7 @@ namespace Main
             {
                 float t = time - timeCheck; // 下降開始時からのtをカウント
                 // 疲れていない，かつゲームオーバー状態でもクリア状態でもないときのみ，入力を受け付ける。
-                if (GameManager.Instance.IsSquat <= 0.9f && !GameManager.Instance.IsGameOver)
+                if (!IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver)
                 {
                     releasedY = y;
                     isSquatHeld = false;

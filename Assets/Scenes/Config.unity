@@ -267,8 +267,6 @@ GameObject:
   m_Component:
   - component: {fileID: 166523880}
   - component: {fileID: 166523879}
-  - component: {fileID: 166523882}
-  - component: {fileID: 166523881}
   m_Layer: 0
   m_Name: InputChecker
   m_TagString: Untagged
@@ -307,48 +305,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &166523881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166523878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab809ca090cc99244ad287a7ebe18f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &166523882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166523878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: bb008591f30e814448345c879aa05168, type: 3}
-  m_NotificationBehavior: 3
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Input
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &170130635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2499,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 210902628833402508, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
   m_PrefabInstance: {fileID: 1219960047}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &917106816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1901763902837424827, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_Name
+      value: InputGetter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579019367655907254, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ce4619c7f68e31418bf49fac781c1b8, type: 3}
 --- !u!1 &917318714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,7 +3450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d49eb945657c434fb3995f33b913e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutImage: {fileID: 0}
+  loadScript: {fileID: 0}
   clickAS: {fileID: 1023336370}
 --- !u!4 &1023336369
 Transform:
@@ -6958,3 +6971,4 @@ SceneRoots:
   - {fileID: 1782226120}
   - {fileID: 166523880}
   - {fileID: 414916093}
+  - {fileID: 917106816}

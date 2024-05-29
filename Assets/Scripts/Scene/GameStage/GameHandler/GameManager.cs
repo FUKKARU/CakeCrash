@@ -27,10 +27,6 @@ namespace Main
 
         [NonSerialized] public bool IsLeftMode;
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
-        [NonSerialized] public float IsRed = 0; // 赤に対応するボタンの入力
-        [NonSerialized] public float IsGreen = 0; // 緑に対応するボタンの入力
-        [NonSerialized] public float IsBlue = 0; // 青に対応するボタンの入力
-        [NonSerialized] public float IsSquat = 0; // しゃがみに対応するボタンの入力
         [NonSerialized] public int CurrentStamina;
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
@@ -118,30 +114,27 @@ namespace Main
             {
                 if (!IsHiding && !IsLooking && !IsDoingPenalty && !IsGameOver)
                 {
-                    if (IsRed >= 0.99f)
+                    if (IA.InputGetter.Instance.IsRed)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
 
-                        IsRed = 0;
                         PushedColor = PUSHED_COLOR.RED;
                         IsHammerGeneratable = true;
                     }
-                    else if (IsGreen >= 0.99f)
+                    else if (IA.InputGetter.Instance.IsGreen)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
 
-                        IsGreen = 0;
                         PushedColor = PUSHED_COLOR.GREEN;
                         IsHammerGeneratable = true;
                     }
-                    else if (IsBlue >= 0.99f)
+                    else if (IA.InputGetter.Instance.IsBlue)
                     {
                         IsHammerCoolTime = true;
                         hammerCooltime = HumanParamsSO.Entity.HammerCooltime;
 
-                        IsBlue = 0;
                         PushedColor = PUSHED_COLOR.BLUE;
                         IsHammerGeneratable = true;
                     }
