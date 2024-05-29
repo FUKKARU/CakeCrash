@@ -1336,9 +1336,6 @@ MonoBehaviour:
   deltaScoreText: {fileID: 1230312179}
   SquatAnnounceUI: {fileID: 305041474}
   ComboUI: {fileID: 1544267465}
-  happinessFamilyText: {fileID: 1278566058}
-  resultScoreText: {fileID: 100217588}
-  GuardStop: 0
   StunEFF: {fileID: 662969273}
   StunCurve:
     serializedVersion: 2
@@ -1427,6 +1424,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  happinessFamilyText: {fileID: 1278566058}
+  resultScoreText: {fileID: 100217588}
+  GuardStop: 0
 --- !u!82 &491597422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7179,8 +7179,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278222205
-  m_fontColor: {r: 0.49019608, g: 0.49019608, b: 0, a: 1}
+    rgba: 4278241480
+  m_fontColor: {r: 0.78431374, g: 0.78431374, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

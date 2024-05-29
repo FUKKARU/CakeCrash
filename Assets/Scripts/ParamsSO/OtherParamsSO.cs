@@ -34,12 +34,10 @@ namespace Main
         }
         #endregion
 
-        [Header("ライトの角度 (開始，終了)")] public Vector2 LightTheta = new Vector2(-10f, -190f);
-        [Header("画面がフェードアウトするスピード")] public float FadeOutSpeed = 100f;
-        [Header("ケーキが範囲外のUIを消すまでの秒数")] public float CakeOutOfRangeUIHideDuration = 2f;
-        [Header("ゲームオーバーの演出時にカメラが向くオイラー回転角x")] public float GameOverCameraRotationX = -30f;
-        [Header("Quit(0)ボタンが長押し判定になる秒数")] public float QuitHoldPeriod = 2f;
-        [Header("ノルマ達成回数削除\r\n(Ctrl + Shift + Alt + ↑ + ← + ↓ + →)\r\nボタンが長押し判定になる秒数")] public float ClearTimesResetHoldPeriod = 5f;
-        [Header("各種ボタンを押してからすぐにシーン遷移する場合，\r\nそれまでの秒数")] public float SceneChangeWaitTime = 0.2f;
+        [Header("ライトの角度 (開始，終了)")] public Vector2 LightTheta;
+        [Header("画面がフェードアウトするスピード")] public float FadeOutSpeed;
+        [Header("ケーキが範囲外のUIを消すまでの秒数")] public float CakeOutOfRangeUIHideDuration;
+        [Header("ゲームオーバーの演出時にカメラが向くオイラー回転角x")] public float GameOverCameraRotationX;
+        [Header("各種ボタンを押してからすぐにシーン遷移する場合，\r\nそれまでの秒数")] public float SceneChangeWaitTime;
     }
 }

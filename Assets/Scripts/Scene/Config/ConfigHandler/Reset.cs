@@ -9,7 +9,6 @@ namespace Main
 {
     public class Reset : MonoBehaviour
     {
-        [SerializeField] Toggle leftMode;
         [SerializeField] Slider brightness;
         [SerializeField] Slider BGMVolume;
         [SerializeField] Slider SEVolume;
@@ -31,7 +30,6 @@ namespace Main
             IsConfigReseted = true;
 
             // セーブデータを削除
-            PlayerPrefs.DeleteKey("LeftMode");
             PlayerPrefs.DeleteKey("Brightness");
             PlayerPrefs.DeleteKey("BGMVolume");
             PlayerPrefs.DeleteKey("SEVolume");
@@ -39,7 +37,6 @@ namespace Main
             PlayerPrefs.DeleteKey("Difficulty");
 
             // 親のUIの値を変更
-            leftMode.isOn = (ConfigParamsSO.Entity.DefaultLeftMode == 1) ? true : false;
             brightness.value = ConfigParamsSO.Entity.DefaultBrightness;
             BGMVolume.value = ConfigParamsSO.Entity.DefaultSoundVolume[0];
             SEVolume.value = ConfigParamsSO.Entity.DefaultSoundVolume[1];

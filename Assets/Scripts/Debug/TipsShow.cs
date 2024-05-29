@@ -16,13 +16,7 @@ namespace Main
 
         void Update()
         {
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
-            {
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    tips.SetActive(!tips.activeSelf);
-                }
-            }
+            if (IA.InputGetter.Instance.Debug_IsShowTips) tips.SetActive(!tips.activeSelf);
         }
     }
 }

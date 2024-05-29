@@ -7,7 +7,6 @@ namespace Main
 {
     public class SceneChanger : MonoBehaviour
     {
-        [SerializeField] LoadAsync loadScript;
         [SerializeField] AudioSource clickAS;
 
         // Title -> Config (Ý’è‰æ–Ê‚És‚­)

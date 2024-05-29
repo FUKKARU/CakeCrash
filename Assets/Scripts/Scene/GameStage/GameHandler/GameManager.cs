@@ -25,7 +25,6 @@ namespace Main
         }
         #endregion
 
-        [NonSerialized] public bool IsLeftMode;
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
         [NonSerialized] public int CurrentStamina;
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
@@ -87,28 +86,11 @@ namespace Main
         }
         int preScore = 0;
         bool onSquatCombo = false;
-        float quitTime = 0; // タイトルに戻るボタンが押されている時間
         float hammerCooltime = 0f;
 
         //ゲームオーバ用
         int happiness_familyCount;
-        public void HappinessIncrement(int amount)
-        {
-            happiness_familyCount += amount;
-            happinessFamilyText.text = happiness_familyCount.ToString();
-        }
-        [SerializeField] TextMeshProUGUI happinessFamilyText;
-        [SerializeField] TextMeshProUGUI resultScoreText;
-        public bool isGameOver { get; private set; }
-        public bool GuardStop; 
-        IEnumerator ResultShow()
-        {
-            GuardStop = true;
-            inputCont = false;
-
-            yield return new WaitForSeconds(1);
-            resultScoreText.text = "Score : " + Score.ToString();
-        }
+        
         void Start()
         {
             StunEFF.Pause();
@@ -178,20 +160,7 @@ namespace Main
             }
             #endregion
 
-            #region タイトルに戻る判定
-            if (Input.GetKey(KeyCode.Alpha0))
-            {
-                quitTime += Time.deltaTime;
-                if (quitTime >= OtherParamsSO.Entity.QuitHoldPeriod)
-                {
-                    SceneManager.LoadScene("Title");
-                }
-            }
-            else
-            {
-                quitTime = 0;
-            }
-            #endregion
+            if (IA.InputGetter.Instance.Debug_IsToTitle) SceneManager.LoadScene("Title");
 
             if (IsGameOver) ComboUI.text = "";
 
@@ -329,5 +298,23 @@ namespace Main
         }
 
         #endregion
+
+        public void HappinessIncrement(int amount)
+        {
+            happiness_familyCount += amount;
+            happinessFamilyText.text = happiness_familyCount.ToString();
+        }
+        [SerializeField] TextMeshProUGUI happinessFamilyText;
+        [SerializeField] TextMeshProUGUI resultScoreText;
+        public bool isGameOver { get; private set; }
+        public bool GuardStop;
+        IEnumerator ResultShow()
+        {
+            GuardStop = true;
+            inputCont = false;
+
+            yield return new WaitForSeconds(1);
+            resultScoreText.text = "Score : " + Score.ToString();
+        }
     }
 }

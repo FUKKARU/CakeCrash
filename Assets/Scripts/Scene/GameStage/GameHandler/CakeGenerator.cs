@@ -26,16 +26,8 @@ namespace Main
             // ゲーム開始時のケーキをセットアップ
             foreach (float generateX in CakeParamsSO.Entity.CakeStartGenerateXList)
             {
-                if (!GameManager.Instance.IsLeftMode)
-                {
-                    mostLeftCakeSet = MakeACakeSet(new Vector3(generateX, 0, 0));
-                    mostLeftCakeSet.transform.parent = cakeParent;
-                }
-                else
-                {
-                    mostRightCakeSet = MakeACakeSet(new Vector3(-generateX, 0, 0));
-                    mostRightCakeSet.transform.parent = cakeParent;
-                }
+                mostLeftCakeSet = MakeACakeSet(new Vector3(generateX, 0, 0));
+                mostLeftCakeSet.transform.parent = cakeParent;
             }
         }
 
@@ -44,32 +36,15 @@ namespace Main
             // シーン内のケーキの数をカウント
             int cakeNum = GameObject.FindGameObjectsWithTag("Cake").Length;
 
-            if (!GameManager.Instance.IsLeftMode)
+            if (mostLeftCakeSet != null)
             {
-                if (mostLeftCakeSet != null)
-                {
-                    float leftDistance = Mathf.Abs(mostLeftCakeSet.transform.position.x - (-CakeParamsSO.Entity.CakeLimitX));
+                float leftDistance = Mathf.Abs(mostLeftCakeSet.transform.position.x - (-CakeParamsSO.Entity.CakeLimitX));
 
-                    // シーン内にケーキがcakeMaxSetNumセットないならば，左端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
-                    if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && leftDistance >= CakeParamsSO.Entity.CakeOfst)
-                    {
-                        mostLeftCakeSet = MakeACakeSet(new Vector3(-CakeParamsSO.Entity.CakeLimitX, 0, 0));
-                        mostLeftCakeSet.transform.parent = cakeParent;
-                    }
-                }
-            }
-            else
-            {
-                if (mostRightCakeSet != null)
+                // シーン内にケーキがcakeMaxSetNumセットないならば，左端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
+                if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && leftDistance >= CakeParamsSO.Entity.CakeOfst)
                 {
-                    float rightDistance = Mathf.Abs(CakeParamsSO.Entity.CakeLimitX - mostRightCakeSet.transform.position.x);
-
-                    // シーン内にケーキがcakeMaxSetNumセットないならば，右端に十分なスペースがあるとき，ケーキを壊しきっていない場合のみ
-                    if (cakeNum <= (CakeParamsSO.Entity.MaxCakeSet - 1) * 3 && rightDistance >= CakeParamsSO.Entity.CakeOfst)
-                    {
-                        mostRightCakeSet = MakeACakeSet(new Vector3(CakeParamsSO.Entity.CakeLimitX, 0, 0));
-                        mostRightCakeSet.transform.parent = cakeParent;
-                    }
+                    mostLeftCakeSet = MakeACakeSet(new Vector3(-CakeParamsSO.Entity.CakeLimitX, 0, 0));
+                    mostLeftCakeSet.transform.parent = cakeParent;
                 }
             }
         }

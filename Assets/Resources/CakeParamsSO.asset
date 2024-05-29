@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: CakeParamsSO
   m_EditorClassIdentifier: 
   CakeStartGenerateXList:
-  - 40
-  - 0
   - -40
   CakeLimitX: 43
   CakeOfst: 40

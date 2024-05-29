@@ -70,10 +70,6 @@ namespace Main
                 {
                     direction = CakeParamsSO.Entity.SmashVector3[2] * CakeParamsSO.Entity.SmashPower[2];
                 }
-                if (GameManager.Instance.IsLeftMode)
-                {
-                    direction.x *= -1;
-                }
                 rb.AddForce(direction, ForceMode.Impulse);
             }
 

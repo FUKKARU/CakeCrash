@@ -49,6 +49,9 @@ namespace IA
         public bool IsBlue { get; private set; } = false;
         public bool IsGreen { get; private set; } = false;
         public bool IsSquat { get; private set; } = false;
+        public bool Debug_IsShowTips { get; private set; } = false;
+        public bool Debug_IsChangeResolution { get; private set; } = false;
+        public bool Debug_IsToTitle { get; private set; } = false;
         #endregion
 
         #region【LateUpdate】毎フレームの最後で、フラグを初期化する
@@ -57,6 +60,9 @@ namespace IA
             if (IsRed) IsRed = false;
             if (IsBlue) IsBlue = false;
             if (IsGreen) IsGreen = false;
+            if (Debug_IsShowTips) Debug_IsShowTips = false;
+            if (Debug_IsChangeResolution) Debug_IsChangeResolution = false;
+            if (Debug_IsToTitle) Debug_IsToTitle = false;
         }
         #endregion
 
@@ -74,6 +80,12 @@ namespace IA
 
                 _inputs.General.Squat.performed += OnSquatDown;
                 _inputs.General.Squat.canceled += OnSquatUp;
+
+                _inputs.Debug.ShowTips.performed += Debug_OnShowTips;
+
+                _inputs.Debug.ChangeResolution.performed += Debug_OnChangeResolution;
+
+                _inputs.Debug.ToTitle.performed += Debug_OnToTitle;
             }
             else
             {
@@ -85,6 +97,12 @@ namespace IA
 
                 _inputs.General.Squat.performed -= OnSquatDown;
                 _inputs.General.Squat.canceled -= OnSquatUp;
+
+                _inputs.Debug.ShowTips.performed -= Debug_OnShowTips;
+
+                _inputs.Debug.ChangeResolution.performed -= Debug_OnChangeResolution;
+
+                _inputs.Debug.ToTitle.performed -= Debug_OnToTitle;
             }
         }
         #endregion
@@ -112,6 +130,21 @@ namespace IA
         void OnSquatUp(InputAction.CallbackContext context)
         {
             IsSquat = false;
+        }
+
+        void Debug_OnShowTips(InputAction.CallbackContext context)
+        {
+            Debug_IsShowTips = true;
+        }
+
+        void Debug_OnChangeResolution(InputAction.CallbackContext context)
+        {
+            Debug_IsChangeResolution = true;
+        }
+
+        void Debug_OnToTitle(InputAction.CallbackContext context)
+        {
+            Debug_IsToTitle = true;
         }
         #endregion
     }

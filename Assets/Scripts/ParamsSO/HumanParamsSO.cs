@@ -34,17 +34,17 @@ namespace Main
         }
         #endregion
 
-        [Header("テスト用：ガードマンが来なくなる")] public bool GuardManStop = false;
-        [Header("視点の最大鉛直振れ幅")] public float DoubleA_YRange = 21f;
-        [Header("視点のうごくスピード")] public float W_Speed = 10f;
-        [Header("ハンマーを振るクールタイム")] public float HammerCooltime = 0.1f;
-        [Header("ハンマーを生成する座標(=ハンマー本体の中心)")] public Vector3 HammerGeneratePosition = new Vector3(0.5f, 30.35f, -25f);
-        [Header("ハンマーを振るオイラー角z (開始，終了)")] public Vector2 HammerEulerZ = new Vector2(0f, 90f);
-        [Header("ハンマーを振る時間")] public float HammerDur = 0.1f;
-        [Header("スタミナの最大量")] public int MaxStamina = 1000;
-        [Header("スタミナの回復頻度")] public float StaminaRecoverSpan = 1.5f;
-        [Header("ガードマンが来る間隔[秒]")] public float EventSpan = 15f;
-        [Header("ガードマンがフェイントを使う確率(の分母)")] public int FeintProbability = 10;
+        [Header("テスト用：ガードマンが来なくなる")] public bool GuardManStop;
+        [Header("視点の最大鉛直振れ幅")] public float DoubleA_YRange;
+        [Header("視点のうごくスピード")] public float W_Speed;
+        [Header("ハンマーを振るクールタイム")] public float HammerCooltime;
+        [Header("ハンマーを生成する座標(=ハンマー本体の中心)")] public Vector3 HammerGeneratePosition;
+        [Header("ハンマーを振るオイラー角z (開始，終了)")] public Vector2 HammerEulerZ;
+        [Header("ハンマーを振る時間")] public float HammerDur;
+        [Header("スタミナの最大量")] public int MaxStamina;
+        [Header("スタミナの回復頻度")] public float StaminaRecoverSpan;
+        [Header("ガードマンが来る間隔[秒]")] public float EventSpan;
+        [Header("ガードマンがフェイントを使う確率(の分母)")] public int FeintProbability;
         [Header("ミスった際のコンボの減少量")] public int OnMissComboDel;
     }
 }

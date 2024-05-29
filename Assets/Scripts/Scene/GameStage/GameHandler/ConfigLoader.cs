@@ -10,16 +10,8 @@ namespace Main
 
         void Awake()
         {
-            LoadLeftMode();
             LoadBrightness();
             LoadDifficulty();
-        }
-
-        void LoadLeftMode()
-        {
-            int dValue = ConfigParamsSO.Entity.DefaultLeftMode;
-            bool data = (PlayerPrefs.GetInt("LeftMode", dValue) == 1) ? true : false;
-            GameManager.Instance.IsLeftMode = data;
         }
 
         void LoadBrightness()

@@ -34,10 +34,10 @@ namespace Main
         }
         #endregion
 
-        [Header("クリームを生成するz座標(めり込み防止のため)")] public float CreamGenerateZ = 115f;
-        [Header("クリームを生成した座標からカメラに近づける距離")] public float CreamGenerateOffset = 5f;
-        [Header("ミスした時の，クリームを生成する座標")] public Vector3 MissCreamGeneratePos = new Vector3(0.5f, 35f, -27f);
-        [Header("クリームが消えるまでの時間(秒)")] public float CreamFadePeriod = 0.5f;
-        [Header("ミスした時の，クリームが消えるまでの時間(秒)")] public float MissCreamFadePeriod = 1.5f;
+        [Header("クリームを生成するz座標(めり込み防止のため)")] public float CreamGenerateZ;
+        [Header("クリームを生成した座標からカメラに近づける距離")] public float CreamGenerateOffset;
+        [Header("ミスした時の，クリームを生成する座標")] public Vector3 MissCreamGeneratePos;
+        [Header("クリームが消えるまでの時間(秒)")] public float CreamFadePeriod;
+        [Header("ミスした時の，クリームが消えるまでの時間(秒)")] public float MissCreamFadePeriod;
     }
 }

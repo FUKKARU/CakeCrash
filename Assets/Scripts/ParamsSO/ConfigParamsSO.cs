@@ -35,11 +35,10 @@ namespace Main
         #endregion
 
         [Header("‰Šúİ’è")]
-        [Header("¶èƒ‚[ƒh (0:ƒIƒt 1:ƒIƒ“)")] public int DefaultLeftMode = 0;
-        [Header("•”‰®‚Ì–¾‚é‚³ (-10:0.5”{ 0:1”{ 10:2”{)\r\n(–¾‚é‚³‚Í2^(n/10)”{‚É‚È‚é)"), Range(-10, 10)] public int DefaultBrightness = 0;
-        [Header("‰¹—Ê(dB) (BGM,SE,System)"), Range(-10, 10)] public int[] DefaultSoundVolume = { 0, 0, 0 };
-        [Header("“ïˆÕ“x (0:ŠÈ’P 1:•’Ê 2:“ï‚µ‚¢ 3:‚Æ‚Ä‚à“ï‚µ‚¢)")] public int DefaultDifficulty = 1;
+        [Header("•”‰®‚Ì–¾‚é‚³ (-10:0.5”{ 0:1”{ 10:2”{)\r\n(–¾‚é‚³‚Í2^(n/10)”{‚É‚È‚é)"), Range(-10, 10)] public int DefaultBrightness;
+        [Header("‰¹—Ê(dB) (BGM,SE,System)"), Range(-10, 10)] public int[] DefaultSoundVolume;
+        [Header("“ïˆÕ“x (0:ŠÈ’P 1:•’Ê 2:“ï‚µ‚¢ 3:‚Æ‚Ä‚à“ï‚µ‚¢)")] public int DefaultDifficulty;
         [Space(50)]
-        [Header("•”‰®‚Ì–¾‚é‚³‚ÌŒvZ® (I = d(=var0) * var1^(n/var2))")] public float[] DefaultBrightnessVars = { 0.5f, 2f, 10f };
+        [Header("•”‰®‚Ì–¾‚é‚³‚ÌŒvZ® (I = d(=var0) * var1^(n/var2))")] public float[] DefaultBrightnessVars;
     }
 }

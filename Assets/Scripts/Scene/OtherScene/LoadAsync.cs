@@ -9,7 +9,6 @@ namespace Main
 {
     public class LoadAsync : MonoBehaviour
     {
-        [SerializeField] GameObject titleBGM;
         [SerializeField] Button startBtn;
         [SerializeField] GameObject _loadingUI;
         [SerializeField] Slider _slider;
@@ -66,7 +65,7 @@ namespace Main
                 return;
             }
             _loading = true;
-            Destroy(titleBGM);
+            Destroy(GameObject.FindGameObjectWithTag("TitleBGM"));
             startBtn.gameObject.SetActive(false);
             _loadingUI.SetActive(true);
             StartCoroutine(LoadScene());

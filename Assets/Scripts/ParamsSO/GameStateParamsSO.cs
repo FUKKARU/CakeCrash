@@ -38,6 +38,5 @@ namespace Main
         [Header("フルスクリーンにする")] public bool IsFullScreen;
         [Header("Vsyncをオンにする")] public bool IsVsyncOn;
         [Header("(Vsyncがオフの時のみ)ターゲットフレームレート")] public int TargetFrameRate;
-        [Header("重力の係数")] public float GravityCoef;
     }
 }

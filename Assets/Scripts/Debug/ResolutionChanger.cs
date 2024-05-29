@@ -10,22 +10,19 @@ namespace Main
 
         void Update()
         {
-            if (Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
+            if (IA.InputGetter.Instance.Debug_IsChangeResolution)
             {
-                if (Input.GetKeyDown(KeyCode.F11))
+                if (!isResChanged)
                 {
-                    if (!isResChanged)
-                    {
-                        isResChanged = true;
+                    isResChanged = true;
 
-                        Screen.SetResolution(1536, 864, false);
-                    }
-                    else
-                    {
-                        isResChanged = false;
+                    Screen.SetResolution(1536, 864, false);
+                }
+                else
+                {
+                    isResChanged = false;
 
-                        Screen.SetResolution(1920, 1080, true);
-                    }
+                    Screen.SetResolution(1920, 1080, true);
                 }
             }
         }
