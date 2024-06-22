@@ -15,9 +15,10 @@ namespace Main
         [SerializeField] TextMeshProUGUI _text;
         [SerializeField] TextMeshProUGUI _startAbleText;
 
+        [SerializeField] RectTransform transisionUI; // トランジションの真っ黒なUI
+        AsyncOperation async = null; // ロードの処理で、ロード状態をぶち込むよ
         bool _loading = false;
         float _timeAfterLoadCompleted = 0f; // ロードが完了した後、トランジションの演出が入るまでの時間のカウント
-        bool _isDoingTransision = false; // ロードが完了した後の
 
         void Start()
         {
@@ -35,7 +36,7 @@ namespace Main
 
         IEnumerator LoadScene()
         {
-            AsyncOperation async = SceneManager.LoadSceneAsync("GameStage");
+            async = SceneManager.LoadSceneAsync("GameStage");
             async.allowSceneActivation = false;
             while (!async.isDone)
             {
@@ -50,15 +51,39 @@ namespace Main
                     // 一定時間に達したら...
                     if (_timeAfterLoadCompleted >= OtherParamsSO.Entity.DurAfterLoadCompleted)
                     {
-
-                    }
-                    if (IA.InputGetter.Instance.IsRed || IA.InputGetter.Instance.IsGreen || IA.InputGetter.Instance.IsBlue)
-                    {
-                        async.allowSceneActivation = true;
+                        // [通告する] トランジションを開始せよ！
+                        StartCoroutine(Transision());
+                        // ロードの処理を終了する
+                        yield break;
                     }
                 }
                 yield return null;
             }
+        }
+
+        // LoadSceneコルーチン内で呼ばれる
+        // タイトル => ゲームシーン のトランジション
+        // 一定秒数で、トランジションUIのx座標が -800 => 0 になる
+        IEnumerator Transision()
+        {
+            // カウントの時間を0にして...
+            float time = 0f;
+            // トランジションの時間をキャッシュして...
+            float DUR = OtherParamsSO.Entity.LoadTransisionDur;
+            // その時間までカウントし、UIのx座標を変える
+            while (time < DUR)
+            {
+                time += Time.deltaTime;
+
+                Vector3 uiPos = transisionUI.localPosition;
+                uiPos.x = (time - DUR) * 800 / DUR;
+                transisionUI.localPosition = uiPos;
+
+                yield return null;
+            }
+
+            // トランジションの演出が終わったら、シーン切り替え！
+            async.allowSceneActivation = true;
         }
 
         //ローディング中ならtrueを返す関数
