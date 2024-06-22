@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d65fe7b67541c74eb7083c3cbccbb37, type: 3}
   m_Name: OtherParamsSO
   m_EditorClassIdentifier: 
+  DurAfterLoadCompleted: 2
+  LoadTransisionDur: 1
   LightTheta: {x: -10, y: -190}
   FadeOutSpeed: 100
   CakeOutOfRangeUIHideDuration: 0.5
   GameOverCameraRotationX: -30
-  QuitHoldPeriod: 2
-  ClearTimesResetHoldPeriod: 5
   SceneChangeWaitTime: 0.2

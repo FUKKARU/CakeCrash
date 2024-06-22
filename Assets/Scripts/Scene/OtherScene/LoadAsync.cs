@@ -16,6 +16,8 @@ namespace Main
         [SerializeField] TextMeshProUGUI _startAbleText;
 
         bool _loading = false;
+        float _timeAfterLoadCompleted = 0f; // ロードが完了した後、トランジションの演出が入るまでの時間のカウント
+        bool _isDoingTransision = false; // ロードが完了した後の
 
         void Start()
         {
@@ -42,6 +44,14 @@ namespace Main
                 {
                     _text.text = "Load complete!";
                     if (!_startAbleText.enabled) _startAbleText.enabled = true;
+
+                    // ロードが完了しているなら時間をカウントし...
+                    _timeAfterLoadCompleted += Time.deltaTime;
+                    // 一定時間に達したら...
+                    if (_timeAfterLoadCompleted >= OtherParamsSO.Entity.DurAfterLoadCompleted)
+                    {
+
+                    }
                     if (IA.InputGetter.Instance.IsRed || IA.InputGetter.Instance.IsGreen || IA.InputGetter.Instance.IsBlue)
                     {
                         async.allowSceneActivation = true;
