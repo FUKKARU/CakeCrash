@@ -8471,6 +8471,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room
       objectReference: {fileID: 0}
+    - target: {fileID: 4459374244358694091, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -63.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459374244358694091, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 57.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459374244358694091, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 68.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894486240148996479, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894486240148996479, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894486240148996479, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3104382165847638670, guid: 3696f01e6dd57ac45b1d756f6d1eafda, type: 3}
