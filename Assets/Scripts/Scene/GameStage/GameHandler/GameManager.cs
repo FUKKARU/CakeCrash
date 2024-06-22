@@ -152,13 +152,12 @@ namespace Main
             }
             #endregion
 
-            #region ゲームオーバーを判定
+            // 警備員に見つかったらスタン
             if (IsLooking && !IsHiding && !stun)
             {
                 StartCoroutine(Stun());
                 stun = true;
             }
-            #endregion
 
             if (IA.InputGetter.Instance.Debug_IsToTitle)
             {
