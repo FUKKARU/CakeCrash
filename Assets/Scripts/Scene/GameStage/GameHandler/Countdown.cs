@@ -11,8 +11,9 @@ namespace Main
         static readonly string[] countTimeText = { "3", "2", "1", "GO!" };
         float unscaledTime = 4f;
 
-        // 最初の5フレームは何もしない。
-        int frameCount = 5;
+        [SerializeField] RectTransform _transisionUI; // トランジションの真っ黒なUI
+        // トランジション中かどうか（この間はカウントダウンしない）
+        bool _isDoingTransision = true;
 
         void Awake()
         {
@@ -22,15 +23,14 @@ namespace Main
         void Start()
         {
             countdownText.text = countTimeText[0];
+            // トランジションを開始！
+            StartCoroutine(Transision());
         }
 
         void Update()
         {
-            if (frameCount > 0)
-            {
-                frameCount--;
-                return;
-            }
+            // トランジション中はカウントダウンしない
+            if (_isDoingTransision) return;
 
             unscaledTime -= Time.unscaledDeltaTime;
 
@@ -46,6 +46,29 @@ namespace Main
                 GameManager.Instance.IsPause = false;
                 gameObject.SetActive(false);
             }
+        }
+
+        // トランジションUIのx座標を、
+        // 指定秒数で、
+        // 0 => 800 にする。
+        IEnumerator Transision()
+        {
+            float time = 0;
+            float DUR = OtherParamsSO.Entity.LoadTransisionDur;
+
+            while (time < DUR)
+            {
+                time += Time.deltaTime;
+
+                Vector3 uiPos = _transisionUI.position;
+                uiPos.x = time * 800 / DUR;
+                _transisionUI.position = uiPos;
+
+                yield return null;
+            }
+
+            // [通告する] トランジションの演出完了！（カウントダウンを開始せよ）
+            _isDoingTransision = false;
         }
     }
 }
