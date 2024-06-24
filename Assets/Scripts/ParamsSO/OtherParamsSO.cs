@@ -33,8 +33,9 @@ namespace Main
             }
         }
         #endregion
-        [Header("ロードが完了してから何秒後にトランジションの演出が入るか")] public float DurAfterLoadCompleted;
-        [Header("ロード完了後のトランジションにおいて、何秒で画面が覆われる/明けるか")] public float LoadTransisionDur;
+        [Header("ロードが完了してから何秒後に\nトランジションの演出が入るか")] public float DurAfterLoadCompleted;
+        [Header("ロード完了後のトランジションにおいて、\n何秒で画面が覆われる/明けるか")] public float LoadTransisionDur;
+        [Header("覆われるトランジションの後、\nかつ明けるトランジションの前に、\n何秒のクールタイムを挟むか")] public float BetweenTransisionDur;
         [Header("ライトの角度 (開始，終了)")] public Vector2 LightTheta;
         [Header("画面がフェードアウトするスピード")] public float FadeOutSpeed;
         [Header("ケーキが範囲外のUIを消すまでの秒数")] public float CakeOutOfRangeUIHideDuration;

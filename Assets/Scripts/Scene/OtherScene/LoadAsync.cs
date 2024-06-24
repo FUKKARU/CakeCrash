@@ -13,7 +13,6 @@ namespace Main
         [SerializeField] GameObject _loadingUI;
         [SerializeField] Slider _slider;
         [SerializeField] TextMeshProUGUI _text;
-        [SerializeField] TextMeshProUGUI _startAbleText;
 
         [SerializeField] RectTransform transisionUI; // トランジションの真っ黒なUI
         AsyncOperation async = null; // ロードの処理で、ロード状態をぶち込むよ
@@ -44,7 +43,6 @@ namespace Main
                 if (async.progress >= 0.9f)
                 {
                     _text.text = "Load complete!";
-                    if (!_startAbleText.enabled) _startAbleText.enabled = true;
 
                     // ロードが完了しているなら時間をカウントし...
                     _timeAfterLoadCompleted += Time.deltaTime;
@@ -83,6 +81,7 @@ namespace Main
             }
 
             // トランジションの演出が終わったら、シーン切り替え！
+            yield return new WaitForSeconds(OtherParamsSO.Entity.BetweenTransisionDur);
             async.allowSceneActivation = true;
         }
 

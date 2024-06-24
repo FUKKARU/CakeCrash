@@ -8,7 +8,7 @@ namespace Main
     public class Countdown : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI countdownText;
-        static readonly string[] countTimeText = { "3", "2", "1", "GO!" };
+        static readonly string[] countTimeText = { "", "3", "2", "1", "GO!" };
         float unscaledTime = 4f;
 
         [SerializeField] RectTransform _transisionUI; // トランジションの真っ黒なUI
@@ -34,10 +34,11 @@ namespace Main
 
             unscaledTime -= Time.unscaledDeltaTime;
 
-            if (3f <= unscaledTime) countdownText.text = countTimeText[0];
-            else if (2f <= unscaledTime) countdownText.text = countTimeText[1];
-            else if (1f <= unscaledTime) countdownText.text = countTimeText[2];
-            else if (0f <= unscaledTime) countdownText.text = countTimeText[3];
+            if (4f <= unscaledTime) countdownText.text = countTimeText[0];
+            else if (3f <= unscaledTime) countdownText.text = countTimeText[1];
+            else if (2f <= unscaledTime) countdownText.text = countTimeText[2];
+            else if (1f <= unscaledTime) countdownText.text = countTimeText[3];
+            else if (0f <= unscaledTime) countdownText.text = countTimeText[4];
             else
             {
                 countdownText.enabled = false;
@@ -53,16 +54,18 @@ namespace Main
         // 0 => 800 にする。
         IEnumerator Transision()
         {
+            yield return new WaitForSecondsRealtime(OtherParamsSO.Entity.BetweenTransisionDur);
+
             float time = 0;
             float DUR = OtherParamsSO.Entity.LoadTransisionDur;
 
             while (time < DUR)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
 
-                Vector3 uiPos = _transisionUI.position;
+                Vector3 uiPos = _transisionUI.localPosition;
                 uiPos.x = time * 800 / DUR;
-                _transisionUI.position = uiPos;
+                _transisionUI.localPosition = uiPos;
 
                 yield return null;
             }

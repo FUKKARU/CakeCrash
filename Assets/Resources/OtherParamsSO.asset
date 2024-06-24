@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DurAfterLoadCompleted: 2
   LoadTransisionDur: 1
+  BetweenTransisionDur: 1
   LightTheta: {x: -10, y: -190}
   FadeOutSpeed: 100
   CakeOutOfRangeUIHideDuration: 0.5
