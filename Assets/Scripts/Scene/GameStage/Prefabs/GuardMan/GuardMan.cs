@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Main
 {
@@ -20,7 +22,7 @@ namespace Main
         // 監視中判定になるドアの回転角 (y軸)
         const float isLookingTrigerDoorRotateY = 70;
         // ドアを開けるイベントの変数 (様子見，開ける，閉じる : 目標角度，増分)
-        readonly Vector2[] doorOpenList = { new Vector2(30, 6) , new Vector2(120, 3) , new Vector2(0, 6) };
+        readonly Vector2[] doorOpenList = { new Vector2(30, 6), new Vector2(120, 3), new Vector2(0, 6) };
         // ドアを開けるイベントの変数 (様子見=>開ける，開ける=>閉める : 待つ秒数)
         readonly float[] doorOpenWaitTime = { 1, 3 };
         // フェイントのイベントの変数 (様子見，閉じる : 目標角度，増分)
@@ -121,11 +123,13 @@ namespace Main
 
             yield return new WaitForSeconds(doorOpenWaitTime[0]);
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorOpenSE);
+            GameManager.Instance.IsOpening = true;
             StartCoroutine(Handling(doorOpenList[1]));
 
             yield return new WaitForSeconds(doorOpenWaitTime[1]);
             audioSource.PlayOneShot(SoundParamsSO.Entity.DoorCloseSE);
             yield return StartCoroutine(Handling(doorOpenList[2]));
+            StartCoroutine(Wait(() => GameManager.Instance.IsOpening = false, HumanParamsSO.Entity.GuardManAfterClosedDur));
             GameManager.Instance.SquatAnnounceUI.SetActive(false);
 
             // 歩く
@@ -151,6 +155,12 @@ namespace Main
             anim.Setup(exit);
             yield return new WaitForSeconds(3f);
             Destroy(anim.gameObject);
+        }
+
+        private IEnumerator Wait(Action action, float t)
+        {
+            yield return new WaitForSeconds(t);
+            action();
         }
     }
 }

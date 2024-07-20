@@ -160,8 +160,8 @@ namespace Main
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.RED)
                 {
                     GameManager.Instance.CakeCrashNum++;
-                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
-                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    if (!GameManager.Instance.IsOpening) GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    GameManager.Instance.ShowScore();
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -176,8 +176,8 @@ namespace Main
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.GREEN)
                 {
                     GameManager.Instance.CakeCrashNum++;
-                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
-                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    if (!GameManager.Instance.IsOpening) GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    GameManager.Instance.ShowScore();
                     GameManager.Instance.ComboContinuation();
                 }
                 else
@@ -192,8 +192,8 @@ namespace Main
                 if (GameManager.Instance.PushedColor == GameManager.PUSHED_COLOR.BLUE)
                 {
                     GameManager.Instance.CakeCrashNum++;
-                    GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
-                    if (GameManager.Instance.CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur) GameManager.Instance.ShowScore();
+                    if (!GameManager.Instance.IsOpening) GameManager.Instance.Score += GameManager.Instance.ComboCounter + 1;
+                    GameManager.Instance.ShowScore();
                     GameManager.Instance.ComboContinuation();
                 }
                 else

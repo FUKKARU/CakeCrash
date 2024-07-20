@@ -45,9 +45,8 @@ namespace Main
         [Header("ケーキの流れるスピード")] public float CakeSpeed;
         [Header("ケーキを吹っ飛ばす方向\r\n(大，中，小)")] public Vector3[] SmashVector3;
         [Header("ケーキを吹っ飛ばす力\r\n(大，中，小)")] public float[] SmashPower;
-        [Header("ケーキを何個壊すごとに、スコアに換算する演出を入れるか。")] public int ToScoreDur;
         [Header("スコアの差分テキストを消すまでの秒数")] public float DelTextFadeDur;
         [Header("ゲームオーバになるケーキの数")] public int GameOverCakeNum;
-        [Header("一回当たりの加速の上昇値")] public int SpeedIncrementValue;
+        [Header("一回当たりの加速の上昇値")] public float SpeedIncrementValue;
     }
 }

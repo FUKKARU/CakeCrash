@@ -10,7 +10,7 @@ namespace Main
         bool decSpeedForGameOver;
         void Update()
         {
-            transform.position += Vector3.right * (CakeParamsSO.Entity.CakeSpeed * Time.deltaTime);
+            transform.position += Vector3.right * (GameManager.Instance.CakeSpeed * Time.deltaTime);
             // ‰æ–ÊŠO‚És‚Á‚½‚çÁ‚·
             if (transform.position.x > CakeParamsSO.Entity.CakeLimitX)
             {
@@ -27,13 +27,13 @@ namespace Main
 
         IEnumerator DecSpeed()
         {
-            float fastestSpeed = CakeParamsSO.Entity.CakeSpeed;
+            float fastestSpeed = GameManager.Instance.CakeSpeed;
             float endTime = 3;
             float t = 0;
             while (t < endTime)
             {
                 t += Time.deltaTime;
-                CakeParamsSO.Entity.CakeSpeed = ((initialSpeed - fastestSpeed) / endTime) * t + fastestSpeed;
+                GameManager.Instance.CakeSpeed = ((initialSpeed - fastestSpeed) / endTime) * t + fastestSpeed;
                 yield return null;
             }
             yield break;

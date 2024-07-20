@@ -27,6 +27,7 @@ namespace Main
 
         [NonSerialized] public float TimePassed = 0f; // ゲーム開始時からの経過時間
         [NonSerialized] public int CurrentStamina;
+        [NonSerialized] public float CakeSpeed; // ケーキのスピード
         [NonSerialized] public bool IsPause = true; // ゲームが一時停止中かどうか(一時停止中に入力されないようにしている)
         [NonSerialized] public bool IsHammerCoolTime = false; // ハンマーを振るクールタイム中かどうか
         [NonSerialized] public bool IsHammerShakable = false; // ハンマーを振っているかどうか(1回しか使わない)
@@ -34,6 +35,7 @@ namespace Main
         [NonSerialized] public bool IsDoingPenalty = false; // ミスっているかどうか
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
+        [NonSerialized] public bool IsOpening = false; // 警備員がドアを開いているか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか(どこかでtrueにしてね)
         [NonSerialized] public GameObject missCream = null;
         [NonSerialized] public bool inputCont = true;
@@ -97,6 +99,8 @@ namespace Main
             StunEFF.Pause();
 
             SquatAnnounceUI.SetActive(false);
+
+            CakeSpeed = CakeParamsSO.Entity.CakeSpeed;
 
             deltaScoreText.enabled = false;
             preScore = Score;
@@ -194,15 +198,10 @@ namespace Main
         Coroutine delTextFade = null;
         public void ShowScore()
         {
-            while (CakeCrashNum >= CakeParamsSO.Entity.ToScoreDur)
-            {
-                CakeCrashNum -= CakeParamsSO.Entity.ToScoreDur;
-            }
-
             scoreText.text = Score.ToString("D8");
             deltaScoreText.text = "+ " + (Score - preScore).ToString();
             preScore = Score;
-            CakeParamsSO.Entity.CakeSpeed += CakeParamsSO.Entity.SpeedIncrementValue;
+            if (ComboCounter >= 2) CakeSpeed += CakeParamsSO.Entity.SpeedIncrementValue;
             if (delTextFade != null) StopCoroutine(delTextFade);
             deltaScoreText.enabled = true;
             delTextFade = StartCoroutine(DelTextFade());

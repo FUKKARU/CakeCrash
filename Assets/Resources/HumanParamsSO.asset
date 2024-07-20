@@ -23,4 +23,5 @@ MonoBehaviour:
   StaminaRecoverSpan: 1.5
   EventSpan: 15
   FeintProbability: 10
+  GuardManAfterClosedDur: 2
   OnMissComboDel: 10
