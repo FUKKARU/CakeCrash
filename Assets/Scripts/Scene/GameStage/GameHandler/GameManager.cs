@@ -52,7 +52,7 @@ namespace Main
         public enum PUSHED_COLOR { NULL, RED, GREEN, BLUE }
 
         public GameObject SquatAnnounceUI;
-        public TextMeshProUGUI ComboUI;
+        [SerializeField] private TextMeshProUGUI ComboUI;
 
         int comboCounter = 0; public int ComboCounter
         {
@@ -165,6 +165,10 @@ namespace Main
                 StartCoroutine(Stun());
                 stun = true;
             }
+            else
+            {
+                SquatComboStarter();
+            }
 
             if (IA.InputGetter.Instance.Debug_IsToTitle)
             {
@@ -173,9 +177,6 @@ namespace Main
             }
 
             if (IsGameOver) ComboUI.text = "";
-
-            SquatComboStarter();
-
 
             if (happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
             {
