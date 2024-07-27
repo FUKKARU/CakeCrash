@@ -36,6 +36,7 @@ namespace Main
         [NonSerialized] public bool IsHiding = false; // 隠れているかどうか
         [NonSerialized] public bool IsLooking = false; // 警備員がこちらを見ているかどうか
         [NonSerialized] public bool IsOpening = false; // 警備員がドアを開いているか
+        [NonSerialized] public bool IsStun = false; // スタン中であるかどうか
         [NonSerialized] public bool IsGameOver = false; // ゲームオーバーになったかどうか(どこかでtrueにしてね)
         [NonSerialized] public GameObject missCream = null;
         [NonSerialized] public bool inputCont = true;
@@ -160,15 +161,13 @@ namespace Main
             #endregion
 
             // 警備員に見つかったらスタン
-            if (IsLooking && !IsHiding && !stun)
+            if (IsLooking && !IsHiding && !IsStun)
             {
                 StartCoroutine(Stun());
-                stun = true;
+                IsStun = true;
             }
-            else
-            {
-                SquatComboStarter();
-            }
+
+            SquatComboStarter();
 
             if (IA.InputGetter.Instance.Debug_IsToTitle)
             {
@@ -279,7 +278,6 @@ namespace Main
         #endregion
 
         #region Stunned
-        bool stun;
         [SerializeField] ParticleSystem StunEFF;
         [SerializeField] AnimationCurve StunCurve;
         float r = 0.5f;
@@ -305,7 +303,7 @@ namespace Main
             camera.transform.position = startPos;
             camera.transform.rotation = startRot;
             inputCont = true;
-            stun = false;
+            IsStun = false;
         }
 
         #endregion

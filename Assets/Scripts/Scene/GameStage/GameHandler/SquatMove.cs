@@ -30,8 +30,8 @@ namespace Main
         void Update()
         {
             time += Time.deltaTime;
-            // 疲れていない，かつゲームオーバー状態でもクリア状態でもない、かつポーズ中でない時のみ，入力を受け付ける。
-            if (!isSquatHeld && isDownMode && IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver && !GameManager.Instance.IsPause)
+            // 疲れていない，かつゲームオーバー状態でもクリア状態でもない、かつポーズ中でない、かつスタン中でない時のみ，入力を受け付ける。
+            if (!isSquatHeld && isDownMode && IA.InputGetter.Instance.IsSquat && !GameManager.Instance.IsGameOver && !GameManager.Instance.IsPause && !GameManager.Instance.IsStun)
             {
                 GameManager.Instance.IsHiding = true;
                 timeCheck = time;
