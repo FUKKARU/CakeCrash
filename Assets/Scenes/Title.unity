@@ -509,7 +509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681296854
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1004,7 +1004,6 @@ MonoBehaviour:
   _loadingUI: {fileID: 3078488193919217171}
   _slider: {fileID: 2691208857671709688}
   _text: {fileID: 1275268643100246905}
-  _startAbleText: {fileID: 0}
   transisionUI: {fileID: 199609982}
 --- !u!1 &1011120492
 GameObject:
@@ -2450,7 +2449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2110679578
 RectTransform:
   m_ObjectHideFlags: 0
