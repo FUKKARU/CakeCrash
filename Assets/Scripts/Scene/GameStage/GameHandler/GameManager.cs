@@ -93,9 +93,12 @@ namespace Main
 
         //ゲームオーバ用
         int happiness_familyCount;
+        [NonSerialized] public bool GuardManStop;
 
         void Start()
         {
+            bool GuardManStop = HumanParamsSO.Entity.GuardManStop;
+
             StunEFF.Pause();
 
             SquatAnnounceUI.SetActive(false);
@@ -177,7 +180,7 @@ namespace Main
             if (happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
             {
                 isGameOver = true;
-                HumanParamsSO.Entity.GuardManStop = true;
+                GuardManStop = true;
                 StartCoroutine(ResultShow());
             }
         }

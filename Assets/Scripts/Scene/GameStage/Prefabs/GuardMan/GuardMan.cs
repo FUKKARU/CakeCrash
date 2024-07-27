@@ -44,7 +44,7 @@ namespace Main
                 gameObject.GetComponent<GuardMan>().enabled = false;
             }
 
-            if (!HumanParamsSO.Entity.GuardManStop)
+            if (!GameManager.Instance.GuardManStop)
             {
                 timer += Time.deltaTime;
                 if (timer >= HumanParamsSO.Entity.EventSpan)
