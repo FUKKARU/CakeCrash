@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Main
 {
     public class Countdown : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI countdownText;
-        static readonly string[] countTimeText = { "", "3", "2", "1", "GO!" };
+        [SerializeField] Image countdownImage;
+        [SerializeField] Sprite[] countdownSprites = new Sprite[4];
         float unscaledTime = 4f;
 
         [SerializeField] RectTransform _transisionUI; // トランジションの真っ黒なUI
@@ -22,7 +22,6 @@ namespace Main
 
         void Start()
         {
-            countdownText.text = countTimeText[0];
             // トランジションを開始！
             StartCoroutine(Transision());
         }
@@ -34,14 +33,13 @@ namespace Main
 
             unscaledTime -= Time.unscaledDeltaTime;
 
-            if (4f <= unscaledTime) countdownText.text = countTimeText[0];
-            else if (3f <= unscaledTime) countdownText.text = countTimeText[1];
-            else if (2f <= unscaledTime) countdownText.text = countTimeText[2];
-            else if (1f <= unscaledTime) countdownText.text = countTimeText[3];
-            else if (0f <= unscaledTime) countdownText.text = countTimeText[4];
+            if (3f <= unscaledTime) countdownImage.sprite = countdownSprites[0];
+            else if (2f <= unscaledTime) countdownImage.sprite = countdownSprites[1];
+            else if (1f <= unscaledTime) countdownImage.sprite = countdownSprites[2];
+            else if (0f <= unscaledTime) countdownImage.sprite = countdownSprites[3];
             else
             {
-                countdownText.enabled = false;
+                countdownImage.enabled = false;
                 GameManager.Instance.PlayBGM();
                 Time.timeScale = 1;
                 GameManager.Instance.IsPause = false;
