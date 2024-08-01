@@ -1479,6 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55efd3dc5bb538248a4631ab429a1d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  directionalLight: {fileID: 119978622}
   audioSourceBGM: {fileID: 491597422}
   audioSourceSE: {fileID: 491597423}
   isMissingHandler: {fileID: 1183980805}

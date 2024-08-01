@@ -43,6 +43,7 @@ namespace Main
         [NonSerialized] public PUSHED_COLOR PushedColor = PUSHED_COLOR.NULL;
         [NonSerialized] public List<GameObject> Hammers = new();
 
+        [SerializeField] GameObject directionalLight;
         [SerializeField] AudioSource audioSourceBGM;
         [SerializeField] AudioSource audioSourceSE;
         [SerializeField] IsMissingHandler isMissingHandler;
@@ -181,6 +182,7 @@ namespace Main
             {
                 isGameOver = true;
                 GuardManStop = true;
+                directionalLight.transform.rotation = Quaternion.Euler(-190, -90, 0);
                 StartCoroutine(ResultShow());
             }
         }
