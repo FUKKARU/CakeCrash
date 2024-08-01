@@ -14,11 +14,11 @@ namespace Main
             // ‰æ–ÊŠO‚És‚Á‚½‚çÁ‚·
             if (transform.position.x > CakeParamsSO.Entity.CakeLimitX)
             {
-                if (!GameManager.Instance.isGameOver)
+                if (!GameManager.Instance.IsGameOver)
                     GameManager.Instance.HappinessIncrement(transform.childCount - 1);
                 Destroy(gameObject);
             }
-            if (GameManager.Instance.isGameOver && !decSpeedForGameOver)
+            if (GameManager.Instance.IsGameOver && !decSpeedForGameOver)
             {
                 decSpeedForGameOver = true;
                 StartCoroutine(DecSpeed());

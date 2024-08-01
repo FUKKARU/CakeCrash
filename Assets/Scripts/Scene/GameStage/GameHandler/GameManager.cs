@@ -178,11 +178,12 @@ namespace Main
 
             if (IsGameOver) ComboUI.text = "";
 
-            if (happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !isGameOver)
+            if (happiness_familyCount > CakeParamsSO.Entity.GameOverCakeNum && !IsGameOver)
             {
-                isGameOver = true;
+                IsGameOver = true;
                 GuardManStop = true;
                 directionalLight.transform.rotation = Quaternion.Euler(-190, -90, 0);
+                StunEFF.gameObject.SetActive(false);
                 StartCoroutine(ResultShow());
             }
         }
@@ -295,6 +296,8 @@ namespace Main
             float t = 0;
             while (t < endT)
             {
+                if (IsGameOver) break;
+
                 t += Time.deltaTime;
                 float strength = StunCurve.Evaluate(t / endT);
                 camera.transform.position = startPos + UnityEngine.Random.insideUnitSphere * strength * p;
@@ -317,7 +320,6 @@ namespace Main
         }
         [SerializeField] TextMeshProUGUI happinessFamilyText;
         [SerializeField] TextMeshProUGUI resultScoreText;
-        public bool isGameOver { get; private set; }
         public bool GuardStop;
         IEnumerator ResultShow()
         {

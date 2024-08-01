@@ -8,6 +8,8 @@ namespace Main
 {
     public class GuardMan : MonoBehaviour
     {
+        private List<GuardManAnim> instantiatedGuardManAnimList = new();
+
         [SerializeField] private GameObject door;
         [SerializeField] private GameObject handLight;
         [SerializeField] private GuardManAnim guardManAnim;
@@ -41,7 +43,14 @@ namespace Main
             if (GameManager.Instance.IsGameOver)
             {
                 StopAllCoroutines();
-                gameObject.GetComponent<GuardMan>().enabled = false;
+                audioSource.Stop();
+                foreach (GuardManAnim obj in instantiatedGuardManAnimList)
+                {
+                    if (obj == null) continue;
+                    obj.transform.GetChild(0).GetComponent<AudioSource>().Stop();
+                    obj.gameObject.SetActive(false);
+                }
+                gameObject.SetActive(false);
             }
 
             if (!GameManager.Instance.GuardManStop)
@@ -100,6 +109,7 @@ namespace Main
         {
             // •à‚­
             GuardManAnim anim = Instantiate(guardManAnim, exit.position, Quaternion.Euler(0, 180f, 0));
+            instantiatedGuardManAnimList.Add(anim);
             anim.Setup(enter);
             yield return new WaitForSeconds(3f);
             Destroy(anim.gameObject);
@@ -134,6 +144,7 @@ namespace Main
 
             // •à‚­
             GuardManAnim anim = Instantiate(guardManAnim, enter.position, Quaternion.Euler(0, 0, 0));
+            instantiatedGuardManAnimList.Add(anim);
             anim.Setup(exit);
             yield return new WaitForSeconds(3f);
             Destroy(anim.gameObject);
@@ -152,6 +163,7 @@ namespace Main
 
             // •à‚­
             GuardManAnim anim = Instantiate(guardManAnim, enter.position, Quaternion.Euler(0, 0, 0));
+            instantiatedGuardManAnimList.Add(anim);
             anim.Setup(exit);
             yield return new WaitForSeconds(3f);
             Destroy(anim.gameObject);
