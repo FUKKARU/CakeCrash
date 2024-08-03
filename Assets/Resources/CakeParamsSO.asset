@@ -40,5 +40,5 @@ MonoBehaviour:
   - 300
   - 300
   DelTextFadeDur: 2
-  GameOverCakeNum: 100
+  GameOverCakeNum: 20
   SpeedIncrementValue: 0.1

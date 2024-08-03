@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
 namespace Main
 {
@@ -316,8 +318,21 @@ namespace Main
         public void HappinessIncrement(int amount)
         {
             happiness_familyCount += amount;
-            happinessFamilyText.text = happiness_familyCount.ToString();
+            //happinessFamilyText.text = happiness_familyCount.ToString();
+            float loveGaugeAmount = (float)happiness_familyCount / (float)CakeParamsSO.Entity.GameOverCakeNum;
+            int loopTimes = 0;
+            while (loopTimes <= 11)
+            {
+                if ((float)loopTimes / 11.0f < loveGaugeAmount)
+                {
+                    loveGaugeImage.sprite = loveGaugeSprites[loopTimes];
+                }
+                loopTimes++;
+            }
+
         }
+        [SerializeField] Image loveGaugeImage;
+        [SerializeField] Sprite[] loveGaugeSprites;
         [SerializeField] TextMeshProUGUI happinessFamilyText;
         [SerializeField] TextMeshProUGUI resultScoreText;
         public bool GuardStop;

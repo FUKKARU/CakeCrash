@@ -1005,6 +1005,7 @@ RectTransform:
   m_Children:
   - {fileID: 810157603}
   - {fileID: 1706331034}
+  - {fileID: 1862899567}
   m_Father: {fileID: 141146938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1554,6 +1555,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  loveGaugeImage: {fileID: 1862899568}
+  loveGaugeSprites:
+  - {fileID: 21300000, guid: 76498235ea0122c44aaff037af1701a6, type: 3}
+  - {fileID: 21300000, guid: c1897063f5008734db39b50e51d2dc73, type: 3}
+  - {fileID: 21300000, guid: 177817d823ace074fb065b2287021920, type: 3}
+  - {fileID: 21300000, guid: 2244c43d78f143e43b370359e83e99ef, type: 3}
+  - {fileID: 21300000, guid: c4f68e2599dc3a449987859b76bdbe5d, type: 3}
+  - {fileID: 21300000, guid: 85886ca76c9dc3447bea9ff572266217, type: 3}
+  - {fileID: 21300000, guid: 3c86ff50fc9675b4d8766486e6f5e572, type: 3}
+  - {fileID: 21300000, guid: f481f778e0054734aba468a21a7de610, type: 3}
+  - {fileID: 21300000, guid: 0e38ada80bdd0154087622ea0e04462e, type: 3}
+  - {fileID: 21300000, guid: 4f4313f790d47f8439718581fe0efa70, type: 3}
+  - {fileID: 21300000, guid: 4a80815fa2f5b3c41b67bd32a09f7d4e, type: 3}
+  - {fileID: 21300000, guid: ba302c8d993e357418ed8681abc8f9b6, type: 3}
   happinessFamilyText: {fileID: 1278566058}
   resultScoreText: {fileID: 100217588}
   GuardStop: 0
@@ -7470,7 +7485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278566057
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7678,8 +7693,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ac2e206c8b9c30f42838f4872f27c2e8, type: 2}
-  m_sharedMaterial: {fileID: -280950021208164664, guid: ac2e206c8b9c30f42838f4872f27c2e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f653e3d5ebc82dd46b719354d6d0cf1f, type: 2}
+  m_sharedMaterial: {fileID: -1176974704580791247, guid: f653e3d5ebc82dd46b719354d6d0cf1f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8279,6 +8294,81 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!1 &1862899566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1862899567}
+  - component: {fileID: 1862899569}
+  - component: {fileID: 1862899568}
+  m_Layer: 5
+  m_Name: LoveGauge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1862899567
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862899566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 268985237}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 343.33, y: 123}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1862899568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862899566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 76498235ea0122c44aaff037af1701a6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1862899569
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862899566}
+  m_CullTransparentMesh: 1
 --- !u!1 &1870782796
 GameObject:
   m_ObjectHideFlags: 0
