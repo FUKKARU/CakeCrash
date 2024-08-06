@@ -14,7 +14,7 @@ namespace Main
             // ‰æ–ÊŠO‚És‚Á‚½‚çÁ‚·
             if (transform.position.x > CakeParamsSO.Entity.CakeLimitX)
             {
-                if (!GameManager.Instance.IsGameOver)
+                if (!GameManager.Instance.IsGameOver && !GameManager.Instance.IsOpening)
                     GameManager.Instance.HappinessIncrement(transform.childCount - 1);
                 Destroy(gameObject);
             }

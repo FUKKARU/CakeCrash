@@ -265,7 +265,6 @@ namespace Main
         {
             //コンボ終了の時 DeleteCake.csが呼ぶ
             if (keibiin) ComboCounter = 0;
-            ComboCounter -= HumanParamsSO.Entity.OnMissComboDel;
             ComboUI.text = comboCounter == 0 ? "" : "Combo " + ComboCounter;
         }
 
@@ -363,14 +362,20 @@ namespace Main
 
             // 背景の演出
             result.gameObject.SetActive(true);
-            Vector3 setPos = result.rectTransform.position + Vector3.down * 1075; // 背景がセットされる位置
+            const float startY = 450;
+            const float endY = 0;
+            const float resultDur = 1;
             audioSourceSE.PlayOneShot(slideSE);
-            while (result.rectTransform.position.y > 525)
+            float resultT = 0;
+            while (resultT < resultDur)
             {
-                result.rectTransform.position += Vector3.down * 5f;
+                resultT += Time.deltaTime;
+
+                result.rectTransform.localPosition = Vector3.up * (resultT * (endY - startY) / resultDur + startY);
+
                 yield return null;
             }
-            result.rectTransform.position = setPos;
+            result.rectTransform.localPosition = Vector3.up * endY;
 
             // 結果表示
             yield return new WaitForSeconds(1);
