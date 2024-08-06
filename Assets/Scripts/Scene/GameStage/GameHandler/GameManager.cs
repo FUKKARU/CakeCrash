@@ -58,6 +58,8 @@ namespace Main
         public GameObject SquatAnnounceUI;
         [SerializeField] private TextMeshProUGUI ComboUI;
 
+        int maxCombo = 0; // 最大コンボ
+
         int comboCounter = 0; public int ComboCounter
         {
             get
@@ -67,6 +69,10 @@ namespace Main
             set
             {
                 comboCounter = Mathf.Clamp(value, 0, int.MaxValue);
+                if (maxCombo < comboCounter) // 最大コンボを超えていたら代入
+                {
+                    maxCombo = comboCounter;
+                }
             }
         }
         int cakeCrashNum = 0; public int CakeCrashNum
@@ -334,15 +340,60 @@ namespace Main
         [SerializeField] Image loveGaugeImage;
         [SerializeField] Sprite[] loveGaugeSprites;
         [SerializeField] TextMeshProUGUI happinessFamilyText;
+        [SerializeField] TextMeshProUGUI finishText;
+        [SerializeField] Image result;
         [SerializeField] TextMeshProUGUI resultScoreText;
+        [SerializeField] TextMeshProUGUI resultMaxComboText;
+        [SerializeField] TextMeshProUGUI resultCrashNumText;
+        [SerializeField] TextMeshProUGUI goToTitleText;
+        [SerializeField] AudioClip finishSE;
+        [SerializeField] AudioClip slideSE;
+        [SerializeField] AudioClip stampSE;
         public bool GuardStop;
         IEnumerator ResultShow()
         {
             GuardStop = true;
             inputCont = false;
 
+            // 終了表示
+            audioSourceSE.PlayOneShot(finishSE);
+            finishText.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
-            resultScoreText.text = "Score : " + Score.ToString();
+            finishText.gameObject.SetActive(false);
+
+            // 背景の演出
+            result.gameObject.SetActive(true);
+            Vector3 setPos = result.rectTransform.position + Vector3.down * 1075; // 背景がセットされる位置
+            audioSourceSE.PlayOneShot(slideSE);
+            while (result.rectTransform.position.y > 525)
+            {
+                result.rectTransform.position += Vector3.down * 5f;
+                yield return null;
+            }
+            result.rectTransform.position = setPos;
+
+            // 結果表示
+            yield return new WaitForSeconds(1);
+            audioSourceSE.PlayOneShot(stampSE);
+            resultScoreText.text = Score.ToString();
+            yield return new WaitForSeconds(1);
+            audioSourceSE.PlayOneShot(stampSE);
+            resultMaxComboText.text = maxCombo.ToString();
+            yield return new WaitForSeconds(1);
+            audioSourceSE.PlayOneShot(stampSE);
+            resultCrashNumText.text = cakeCrashNum.ToString();
+
+            // 入力されたらタイトルに戻る
+            yield return new WaitForSeconds(1);
+            goToTitleText.gameObject.SetActive(true);
+            while (true)
+            {
+                if ((IA.InputGetter.Instance.IsRed || IA.InputGetter.Instance.IsGreen || IA.InputGetter.Instance.IsBlue || IA.InputGetter.Instance.IsSquat) && !IsPause)
+                {
+                    SceneManager.LoadScene("Title");
+                }
+                yield return null;
+            }
         }
     }
 }
